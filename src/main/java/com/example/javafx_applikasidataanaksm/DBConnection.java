@@ -15,7 +15,6 @@ public class DBConnection {
         String url = "jdbc:postgresql://localhost:5432/" + dbName;
         try {
             dbLink = DriverManager.getConnection(url, dbUser, dbPass);
-            System.out.println("Success!");
         } catch (Exception e) {
             e.printStackTrace();
         }

@@ -7,15 +7,13 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.DataSekolahMingguController">
    <children>
       <Separator layoutX="190.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="3.0" />
-      <ComboBox fx:id="dropDownMenu" layoutX="20.0" layoutY="20.0" prefWidth="150.0" />
-      <Button fx:id="tambahKelasBtn" layoutX="20.0" layoutY="80.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tambah Kelas" />
-      <Button fx:id="editKelasBtn" layoutX="20.0" layoutY="130.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Edit Kelas" />
-      <Button fx:id="hapusKelasBtn" layoutX="20.0" layoutY="180.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Hapus Kelas" />
-      <Button fx:id="tampilkanKelasBtn" layoutX="20.0" layoutY="230.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tampilkan Kelas" />
+      <Button fx:id="tambahKelasBtn" layoutX="20.0" layoutY="140.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tambah Kelas" />
+      <Button fx:id="editKelasBtn" layoutX="20.0" layoutY="190.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Edit Kelas" />
+      <Button fx:id="hapusKelasBtn" layoutX="20.0" layoutY="240.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Hapus Kelas" />
+      <Button fx:id="tampilkanKelasBtn" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tampilkan Kelas" />
       <TableView fx:id="table" layoutX="210.0" layoutY="20.0" prefHeight="360.0" prefWidth="400.0">
         <columns>
           <TableColumn prefWidth="75.0" text="C1" />
@@ -25,5 +23,8 @@
       <Button fx:id="tambahPesertaBtn" layoutX="630.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tambah Peserta" />
       <Button fx:id="editPesertaBtn" layoutX="630.0" layoutY="70.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Edit Peserta" />
       <Button fx:id="hapusPesertaBtn" layoutX="630.0" layoutY="120.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Hapus Peserta" />
+      <ComboBox fx:id="dropDownMenu" layoutX="20.0" layoutY="90.0" prefWidth="150.0" promptText="Pilih Kelas" />
+      <Button fx:id="pilihTahunAjaranBtn" layoutX="20.0" layoutY="20.0" mnemonicParsing="false" onAction="#handlePilihTahunAjaranBtn" prefHeight="26.0" prefWidth="150.0" text="Pilih Tahun Ajaran" />
+      <Separator layoutX="10.0" layoutY="67.0" prefWidth="170.0" />
    </children>
 </AnchorPane>
