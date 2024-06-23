@@ -1,6 +1,7 @@
 package com.example.javafx_applikasidataanaksm.controllers;
 
 import com.example.javafx_applikasidataanaksm.DBConnection;
+import com.example.javafx_applikasidataanaksm.DataSekolahMingguController;
 import com.example.javafx_applikasidataanaksm.components.TahunAjaran;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -35,6 +36,8 @@ public class TahunAjaranController {
     @FXML
     private Button tambahTahunAjaranBtn;
 
+    private DataSekolahMingguController dataSekolahMingguController;
+
     Connection con;
     PreparedStatement st;
     ResultSet rs;
@@ -42,11 +45,25 @@ public class TahunAjaranController {
     @FXML
     public void initialize() throws SQLException {
         showData();
-        table.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            if (newValue != null) {
-                System.out.println(newValue.getId_tahun_ajaran());
-                System.out.println(newValue.getTahun());
-            }
+
+        // Add a listener for double-clicks on table rows
+        table.setRowFactory(tv -> {
+            TableRow<TahunAjaran> row = new TableRow<>();
+            row.setOnMouseClicked(event -> {
+                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+                    TahunAjaran rowData = row.getItem();
+                    if (rowData != null) {
+                        dataSekolahMingguController.setId_tahun_ajaran(rowData.getId_tahun_ajaran());
+                        try {
+                            dataSekolahMingguController.updateKelasDropDownMenu();
+                        } catch (SQLException e) {
+                            throw new RuntimeException(e);
+                        }
+                        dataSekolahMingguController.getTahunAjaranStage().close();
+                    }
+                }
+            });
+            return row;
         });
     }
 
@@ -59,6 +76,7 @@ public class TahunAjaranController {
         Optional<String> result = dialog.showAndWait();
         result.ifPresent(tahunAjaran -> {
             System.out.println("Tahun Ajaran: " + tahunAjaran);
+            // TODO add try-catch for invalid tahunAjaran input
         });
     }
 
@@ -82,4 +100,7 @@ public class TahunAjaranController {
         return listOfTahunAjaran;
     }
 
+    public void setDataSekolahMingguController(DataSekolahMingguController dataSekolahMingguController) {
+        this.dataSekolahMingguController = dataSekolahMingguController;
+    }
 }

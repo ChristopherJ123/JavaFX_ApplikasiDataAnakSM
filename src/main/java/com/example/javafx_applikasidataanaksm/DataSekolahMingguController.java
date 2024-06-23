@@ -1,9 +1,7 @@
 package com.example.javafx_applikasidataanaksm;
 
+import com.example.javafx_applikasidataanaksm.controllers.TahunAjaranController;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableView;
@@ -46,30 +44,60 @@ public class DataSekolahMingguController {
     @FXML
     private Button tampilkanKelasBtn;
 
+    private Stage tahunAjaranStage;
+    private TahunAjaranController tahunAjaranController;
+
     Connection con;
     PreparedStatement st;
     ResultSet rs;
 
-    @FXML
-    public void initialize() throws SQLException {
-        con = DBConnection.getConnection();
+    private int id_tahun_ajaran;
 
+    @FXML
+    public void initialize() {
+
+    }
+
+    public void updateKelasDropDownMenu() throws SQLException {
+        con = DBConnection.getConnection();
         // Get Kelas values for drop down menu
-        String query = "SELECT * FROM kelas";
+        String query = "SELECT * FROM kelas WHERE id_tahun_ajaran = ?";
         st = con.prepareStatement(query);
+        st.setInt(1, id_tahun_ajaran);
         rs = st.executeQuery();
+        dropDownMenu.getItems().clear();
         while (rs.next()) {
             dropDownMenu.getItems().add(rs.getString("nama_kelas"));
         }
-        dropDownMenu.setValue("Pilih kelas");
     }
 
     public void handlePilihTahunAjaranBtn() throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader(DataSekolahMingguApplication.class.getResource("tahun_ajaran-view.fxml"));
-        Parent root = fxmlLoader.load();
-        Stage stage = new Stage();
-        stage.setTitle("Pilih Tahun Ajaran");
-        stage.setScene(new Scene(root));
-        stage.show();
+        if (tahunAjaranStage != null) {
+            tahunAjaranStage.show();
+        }
+    }
+
+    public void setTahunAjaranStage(Stage tahunAjaranStage) {
+        this.tahunAjaranStage = tahunAjaranStage;
+    }
+
+    public Stage getTahunAjaranStage() {
+        return tahunAjaranStage;
+    }
+
+    public void setTahunAjaranController(TahunAjaranController tahunAjaranController) {
+        this.tahunAjaranController = tahunAjaranController;
+    }
+
+    public TahunAjaranController getTahunAjaranController() {
+        return tahunAjaranController;
+    }
+
+    public int getId_tahun_ajaran() {
+        return id_tahun_ajaran;
+    }
+
+    public void setId_tahun_ajaran(int id_tahun_ajaran) {
+        this.id_tahun_ajaran = id_tahun_ajaran;
     }
 }
