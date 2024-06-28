@@ -16,8 +16,10 @@
       <Button fx:id="tampilkanKelasBtn" layoutX="20.0" layoutY="290.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tampilkan Kelas" />
       <TableView fx:id="table" layoutX="210.0" layoutY="20.0" prefHeight="360.0" prefWidth="400.0">
         <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
+          <TableColumn fx:id="id_anak" prefWidth="75.0" text="ID Anak" />
+          <TableColumn fx:id="nama_anak" prefWidth="128.79998779296875" text="Nama Anak" />
+            <TableColumn fx:id="gender" prefWidth="76.800048828125" text="Gender" />
+            <TableColumn fx:id="tanggal_lahir" prefWidth="120.79998779296875" text="Tanggal Lahir" />
         </columns>
       </TableView>
       <Button fx:id="tambahPesertaBtn" layoutX="630.0" layoutY="20.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="150.0" text="Tambah Peserta" />
