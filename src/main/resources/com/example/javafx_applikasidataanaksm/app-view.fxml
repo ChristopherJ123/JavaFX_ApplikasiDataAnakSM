@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -28,7 +29,7 @@
                         </ImageView>
                      </children>
                   </Pane>
-                  <Button fx:id="button_dashboard" layoutX="14.0" layoutY="115.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="166.0" styleClass="button_dashboard" stylesheets="@../assets/css/styles.css" text="Dashboard" textFill="WHITE">
+                  <Button fx:id="button_dashboard" layoutX="14.0" layoutY="115.0" mnemonicParsing="false" onAction="#handleButtonDashboardClick" prefHeight="52.0" prefWidth="166.0" styleClass="button_dashboard" stylesheets="@../assets/css/styles.css" text="Dashboard" textFill="WHITE">
                      <graphic>
                         <ImageView fitHeight="21.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -40,37 +41,48 @@
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="tahun_ajaran" layoutX="22.0" layoutY="182.0" prefWidth="150.0" promptText="Tahun Ajaran" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
-                  <Button fx:id="button_anak" layoutX="16.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE">
+                  <ComboBox fx:id="combo_box_tahun_ajaran" layoutX="22.0" layoutY="182.0" prefWidth="150.0" promptText="Tahun Ajaran" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
+                  <Button fx:id="button_anak" layoutX="16.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_guru" layoutX="16.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE">
+                  <Button fx:id="button_guru" layoutX="16.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE">
+                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE">
+                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE">
+                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE">
+                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleButtonLaporanClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
+                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <ComboBox fx:id="combo_box_kelas" layoutX="22.0" layoutY="250.0" prefWidth="150.0" promptText="Kelas" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
                </children>
             </AnchorPane>
          </children>
@@ -79,7 +91,7 @@
          <children>
             <AnchorPane prefHeight="680.0" prefWidth="670.0" styleClass="blank_space">
                <children>
-                  <TableView fx:id="table_anak" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_anak" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                     <columns>
                       <TableColumn fx:id="table_anak_id_anak" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                       <TableColumn fx:id="table_anak_nama_anak" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
@@ -90,12 +102,12 @@
                         <TableColumn fx:id="table_anak_no_telp_orang_tua" prefWidth="100.0" styleClass="table-row-cell" text="No. Telepon" />
                     </columns>
                   </TableView>
-                  <Label fx:id="lable_table_anak" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Anak">
+                  <Label fx:id="text_lable" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="400.0" text="Data Anak">
                      <font>
                         <Font name="Century Gothic Bold" size="32.0" />
                      </font>
                   </Label>
-                  <TableView fx:id="table_guru" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_guru" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_guru_id_guru" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_guru_nama_guru" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
@@ -103,23 +115,13 @@
                         <TableColumn fx:id="table_guru_no_telp" prefWidth="100.0" styleClass="table-row-cell" text="No. Telepon" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lable_table_guru" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Guru">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="table_kelas" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_kelas" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_kelas_id_kelas" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_kelas_nama_kelas" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lable_table_kelas" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Kelas">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="table_kehadiran" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_kehadiran" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_kehadiran_id_kehadiran" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_kehadiran_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
@@ -128,12 +130,7 @@
                         <TableColumn fx:id="table_kehadiran_kehadiran" prefWidth="103.99990844726562" styleClass="table-row-cell" text="Kehadiran" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lable_table_kehadiran" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Kehadiran">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="table_kebaktian" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_kebaktian" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_kebaktian_id_kebaktian" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_kebaktian_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
@@ -143,23 +140,13 @@
                         <TableColumn fx:id="table_kebaktian_total_kehadiran" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Total" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lable_table_kebaktian" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Kebaktian">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <TableView fx:id="table_laporan" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
+                  <TableView fx:id="table_laporan" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_laporan_no_laporan" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_laporan_nama_laporan" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
                         <TableColumn fx:id="table_laporan_total_laporan" prefWidth="159.20001220703125" styleClass="table-row-cell" text="Kehadiran Tahunan" />
                      </columns>
                   </TableView>
-                  <Label fx:id="lable_table_laporan" layoutX="42.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Laporan">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
                   <Pane fx:id="add" layoutX="43.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="add">
                      <children>
                         <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
@@ -187,6 +174,7 @@
                         </Label>
                      </children>
                   </Pane>
+                  <TextArea fx:id="text_area_laporan" editable="false" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" />
                </children>
             </AnchorPane>
          </children>

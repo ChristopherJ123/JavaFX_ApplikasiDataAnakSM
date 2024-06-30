@@ -1,7 +1,7 @@
-package com.example.javafx_applikasidataanaksm.controllers;
+package com.example.javafx_applikasidataanaksm.archived.controllers;
 
 import com.example.javafx_applikasidataanaksm.DBConnection;
-import com.example.javafx_applikasidataanaksm.DataSekolahMingguController;
+import com.example.javafx_applikasidataanaksm.archived.DataSekolahMingguController;
 import com.example.javafx_applikasidataanaksm.components.TahunAjaran;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

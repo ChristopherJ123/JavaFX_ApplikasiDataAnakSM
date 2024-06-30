@@ -1,6 +1,6 @@
-package com.example.javafx_applikasidataanaksm;
+package com.example.javafx_applikasidataanaksm.archived;
 
-import com.example.javafx_applikasidataanaksm.controllers.TahunAjaranController;
+import com.example.javafx_applikasidataanaksm.archived.controllers.TahunAjaranController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;

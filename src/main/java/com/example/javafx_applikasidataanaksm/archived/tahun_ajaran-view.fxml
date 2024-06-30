@@ -6,7 +6,7 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="240.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.controllers.TahunAjaranController">
+<AnchorPane prefHeight="240.0" prefWidth="430.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.archived.controllers.TahunAjaranController">
    <children>
       <TableView fx:id="table" layoutX="20.0" layoutY="20.0" prefHeight="200.0" prefWidth="200.0">
         <columns>
