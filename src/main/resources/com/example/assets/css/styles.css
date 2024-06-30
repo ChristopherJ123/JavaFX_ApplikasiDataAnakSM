@@ -1,0 +1,117 @@
+.side_anchorpane {
+	-fx-background-color: #2A3957;
+	-fx-border-width: 0px;
+	-fx-border-radius: 0 20px 20px 0;
+	-fx-background-radius: 0 20px 20px 0;
+	-fx-border-style: solid;
+}
+
+.inner_pane {
+	-fx-background-color: #717B8F;
+	-fx-border-width: 0px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #748CFF;
+}
+
+.button_dashboard {
+	-fx-background-color: #141414;
+	-fx-border-width: 0px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #000000;
+}
+
+.button_tahun {
+    -fx-background-color: #FFF9FF;
+	-fx-border-width: 2px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #FFFFFF;
+}
+
+.button_tahun .list-cell {
+	-fx-text-fill: #BAB5BA;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
+.button_regular {
+    -fx-background-color: #2C3C5C;
+    -fx-border-width: 2px;
+    -fx-border-radius: 20px;
+    -fx-background-radius: 20px;
+    -fx-border-style: solid;
+    -fx-border-color: #2C3C5C;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 1.2, 0.5, 0, 1.25); /* Drop shadow effect */
+}
+
+.button_regular:hover {
+    -fx-background-color: #3A4C6D;
+}
+
+.blank_space {
+    -fx-background-color: #E0E3E9;
+}
+
+.table-view {
+    -fx-background-color: white;
+    -fx-border-width: 0px;
+	-fx-border-style: solid;
+	-fx-font-size: 14px;
+    -fx-font-weight: normal;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+
+.table-row-cell {
+    -fx-background-color: #F3B705;
+    -fx-alternate-row-fill-visible: true;
+    -fx-alternate-row-fill-color: #f9f9f9;
+    -fx-font-size: 12px;
+    -fx-font-family: "Segoe UI";
+    -fx-text-fill: black;
+}
+
+.add {
+    -fx-background-color: #4D8F2F;
+	-fx-border-width: 0px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #748CFF;
+}
+
+.add:hover {
+    -fx-background-color: #5EA43A;
+}
+
+.edit {
+    -fx-background-color: #F2B635;
+	-fx-border-width: 0px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #748CFF;
+}
+
+.edit:hover {
+    -fx-background-color: #FFC74A;
+}
+
+.remove {
+    -fx-background-color: #8F2F2F;
+	-fx-border-width: 0px;
+	-fx-border-radius: 20px;
+	-fx-background-radius: 20px;
+	-fx-border-style: solid;
+	-fx-border-color: #748CFF;
+}
+
+.remove:hover {
+    -fx-background-color: #A63A3A;
+}
