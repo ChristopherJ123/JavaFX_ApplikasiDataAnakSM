@@ -86,8 +86,8 @@
                         <TableColumn fx:id="table_anak_gender_anak" prefWidth="46.4000244140625" styleClass="table-row-cell" text="Gender" />
                         <TableColumn fx:id="table_anak_tanggal_lahir" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Lahir" />
                         <TableColumn fx:id="table_anak_alamat" prefWidth="94.4000244140625" styleClass="table-row-cell" text="Alamat" />
-                        <TableColumn fx:id="table_anak_nama_orangtua" prefWidth="86.39999389648438" styleClass="table-row-cell" text="Orang Tua" />
-                        <TableColumn fx:id="table_anak_no_telp" prefWidth="100.0" styleClass="table-row-cell" text="No. Telepon" />
+                        <TableColumn fx:id="table_anak_nama_orang_tua" prefWidth="86.39999389648438" styleClass="table-row-cell" text="Orang Tua" />
+                        <TableColumn fx:id="table_anak_no_telp_orang_tua" prefWidth="100.0" styleClass="table-row-cell" text="No. Telepon" />
                     </columns>
                   </TableView>
                   <Label fx:id="lable_table_anak" layoutX="43.0" layoutY="69.0" prefHeight="42.0" prefWidth="278.0" text="Data Anak">
@@ -122,8 +122,8 @@
                   <TableView fx:id="table_kehadiran" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
                      <columns>
                         <TableColumn fx:id="table_kehadiran_id_kehadiran" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
-                        <TableColumn fx:id="table_kebaktian_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
-                        <TableColumn fx:id="table_kebaktian_judul_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
+                        <TableColumn fx:id="table_kehadiran_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
+                        <TableColumn fx:id="table_kehadiran_judul_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
                         <TableColumn fx:id="table_kehadiran_nama_kehadiran" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
                         <TableColumn fx:id="table_kehadiran_kehadiran" prefWidth="103.99990844726562" styleClass="table-row-cell" text="Kehadiran" />
                      </columns>
@@ -135,9 +135,9 @@
                   </Label>
                   <TableView fx:id="table_kebaktian" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
                      <columns>
-                        <TableColumn fx:id="table_kebaktian_no_kebaktian" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
-                        <TableColumn fx:id="table_kehadiran_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
-                        <TableColumn fx:id="table_kehadiran_judul_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
+                        <TableColumn fx:id="table_kebaktian_id_kebaktian" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
+                        <TableColumn fx:id="table_kebaktian_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
+                        <TableColumn fx:id="table_kebaktian_nama_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
                         <TableColumn fx:id="table_kebaktian_laki_kebaktian" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Laki - Laki" />
                         <TableColumn fx:id="table_kebaktian_perempuan_kebaktian" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Perempuan" />
                         <TableColumn fx:id="table_kebaktian_total_kehadiran" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Total" />

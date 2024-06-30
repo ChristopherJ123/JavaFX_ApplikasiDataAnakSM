@@ -58,23 +58,45 @@
     -fx-background-color: #E0E3E9;
 }
 
+/* General TableView styling */
 .table-view {
     -fx-background-color: white;
-    -fx-border-width: 0px;
-	-fx-border-style: solid;
-	-fx-font-size: 14px;
+    -fx-border-width: 0; /* Remove border */
+    -fx-font-size: 14px;
     -fx-font-weight: normal;
     -fx-font-family: "Segoe UI";
     -fx-text-fill: black;
+    -fx-selection-bar: #D1E8FF; /* Selected row background color */
+    -fx-selection-bar-non-focused: #E8F1FF; /* Selected row background color when not focused */
 }
 
+/* Header styling */
+.table-view .column-header {
+    -fx-background-color: white; /* Header background color */
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+}
+
+/* Row styling */
 .table-row-cell {
-    -fx-background-color: #F3B705;
+    -fx-background-color: #F3B705; /* Default row background color */
     -fx-alternate-row-fill-visible: true;
-    -fx-alternate-row-fill-color: #f9f9f9;
+    -fx-alternate-row-fill: #FAFAFA; /* Alternate row background color */
     -fx-font-size: 12px;
     -fx-font-family: "Segoe UI";
     -fx-text-fill: black;
+    -fx-border-width: 0 0 1px 0; /* Bottom border only */
+    -fx-border-color: #E0E0E0; /* Light grey border */
+}
+
+/* Cell styling */
+.table-cell {
+    -fx-padding: 8px; /* Add padding to cells */
+}
+
+/* Hover effect */
+.table-row-cell:hover {
+    -fx-background-color: #E1E5EC; /* Row background color on hover */
 }
 
 .add {

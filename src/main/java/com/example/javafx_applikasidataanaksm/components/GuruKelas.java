@@ -1,14 +1,16 @@
 package com.example.javafx_applikasidataanaksm.components;
 
+import java.sql.Date;
+
 public class GuruKelas {
     private Integer id_kelas;
     private Integer id_guru;
-    private Integer id_kelas_guru;
+    private Date created_at;
 
-    public GuruKelas(Integer id_kelas, Integer id_guru, Integer id_kelas_guru) {
+    public GuruKelas(Integer id_kelas, Integer id_guru, Date created_at) {
         this.id_kelas = id_kelas;
         this.id_guru = id_guru;
-        this.id_kelas_guru = id_kelas_guru;
+        this.created_at = created_at;
     }
 
     public Integer getId_kelas() {
@@ -27,11 +29,11 @@ public class GuruKelas {
         this.id_guru = id_guru;
     }
 
-    public Integer getId_kelas_guru() {
-        return id_kelas_guru;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setId_kelas_guru(Integer id_kelas_guru) {
-        this.id_kelas_guru = id_kelas_guru;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

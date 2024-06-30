@@ -1,14 +1,16 @@
 package com.example.javafx_applikasidataanaksm.components;
 
+import java.sql.Date;
+
 public class Kelas {
     private Integer id_kelas;
     private String nama_kelas;
-    private Integer id_tahun_ajaran;
+    private Date created_at;
 
-    public Kelas(Integer id_kelas, String nama_kelas, Integer id_tahun_ajaran) {
+    public Kelas(Integer id_kelas, String nama_kelas, Date created_at) {
         this.id_kelas = id_kelas;
         this.nama_kelas = nama_kelas;
-        this.id_tahun_ajaran = id_tahun_ajaran;
+        this.created_at = created_at;
     }
 
     public Integer getId_kelas() {
@@ -27,11 +29,11 @@ public class Kelas {
         this.nama_kelas = nama_kelas;
     }
 
-    public Integer getId_tahun_ajaran() {
-        return id_tahun_ajaran;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setId_tahun_ajaran(Integer id_tahun_ajaran) {
-        this.id_tahun_ajaran = id_tahun_ajaran;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 }

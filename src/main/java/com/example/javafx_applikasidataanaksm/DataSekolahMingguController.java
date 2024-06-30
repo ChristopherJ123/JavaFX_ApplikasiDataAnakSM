@@ -120,7 +120,7 @@ public class DataSekolahMingguController {
         st.setInt(2, id_tahun_ajaran);
         rs = st.executeQuery();
         while (rs.next()) {
-            Anak anak = new Anak(rs.getInt("id_anak"), rs.getString("nama_anak"), rs.getString("gender"), rs.getDate("tanggal_lahir"));
+            Anak anak = new Anak(rs.getInt("id_anak"), rs.getString("nama_anak"), rs.getString("gender"), rs.getDate("tanggal_lahir"), rs.getDate("created_at"));
             listOfAnak.add(anak);
         }
         return listOfAnak;
