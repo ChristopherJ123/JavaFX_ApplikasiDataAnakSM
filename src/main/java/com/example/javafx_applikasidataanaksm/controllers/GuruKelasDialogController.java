@@ -49,7 +49,7 @@ public class GuruKelasDialogController {
         st = con.prepareStatement(query);
         st.setInt(1, field_id_kelas.getValue());
         st.setInt(2, field_id_guru.getValue());
-        st.executeQuery();
+        st.execute();
 
         add.getScene().getWindow().hide();
     }

@@ -57,7 +57,7 @@ public class AnakDialogController {
         // CRUD INSERT
         con = DBConnection.getConnection();
         String query = """
-                INSERT INTO anak
+                INSERT INTO anak (nama_anak, gender, tanggal_lahir, nama_orang_tua, no_telp_orang_tua, alamat)
                 VALUES(?, ?, ?, ?, ?, ?)
                 """;
         st = con.prepareStatement(query);
@@ -67,7 +67,7 @@ public class AnakDialogController {
         st.setString(4, field_nama_orang_tua.getText());
         st.setString(5, field_no_telp_orang_tua.getText());
         st.setString(6, field_alamat.getText());
-        st.executeQuery();
+        st.execute();
 
         add.getScene().getWindow().hide();
     }

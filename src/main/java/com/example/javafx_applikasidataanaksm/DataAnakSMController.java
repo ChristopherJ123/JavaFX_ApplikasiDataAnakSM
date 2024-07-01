@@ -283,7 +283,7 @@ public class DataAnakSMController {
                 updateTable(buttonId);
             }
             case "button_kelas" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kelas-dialog.fxml"));
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kelas_dialog.fxml"));
                 Scene scene = new Scene(appLoader.load());
                 Stage stage = new Stage();
                 stage.setTitle("Input Kelas");
@@ -301,7 +301,7 @@ public class DataAnakSMController {
                 updateTable(buttonId);
             }
             case "button_kebaktian" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kebaktian-dialog.fxml"));
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kebaktian_dialog.fxml"));
                 Scene scene = new Scene(appLoader.load());
                 Stage stage = new Stage();
                 stage.setTitle("Input Kebaktian");

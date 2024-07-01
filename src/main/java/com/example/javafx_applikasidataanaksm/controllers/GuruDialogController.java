@@ -53,7 +53,7 @@ public class GuruDialogController {
         st.setString(1, field_nama_guru.getText());
         st.setString(2, field_no_telp.getText());
         st.setString(3, field_alamat.getText());
-        st.executeQuery();
+        st.execute();
 
         add.getScene().getWindow().hide();
     }

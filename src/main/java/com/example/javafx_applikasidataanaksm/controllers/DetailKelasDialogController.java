@@ -50,7 +50,7 @@ public class DetailKelasDialogController {
         st = con.prepareStatement(query);
         st.setInt(1, field_id_anak.getValue());
         st.setInt(2, field_id_kelas.getValue());
-        st.executeQuery();
+        st.execute();
 
         add.getScene().getWindow().hide();
     }
