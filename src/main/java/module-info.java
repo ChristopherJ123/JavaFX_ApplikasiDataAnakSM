@@ -9,7 +9,6 @@ module com.example.javafx_applikasidataanaksm {
     opens com.example.javafx_applikasidataanaksm.components;
     opens com.example.javafx_applikasidataanaksm.controllers;
     opens com.example.javafx_applikasidataanaksm.archived to javafx.fxml;
-    opens com.example.javafx_applikasidataanaksm.dialogs to javafx.fxml;
 
     exports com.example.javafx_applikasidataanaksm;
     exports com.example.javafx_applikasidataanaksm.archived.controllers;
