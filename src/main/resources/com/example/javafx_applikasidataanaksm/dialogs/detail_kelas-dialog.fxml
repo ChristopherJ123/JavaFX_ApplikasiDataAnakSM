@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="280.0" prefWidth="660.0" styleClass="blank_space" stylesheets="@../../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.controllers.DetailKelasDialogController">
+   <children>
+      <VBox prefHeight="600.0" prefWidth="700.0">
+         <children>
+            <AnchorPane prefHeight="670.0" prefWidth="670.0" styleClass="blank_space">
+               <children>
+                  <Label fx:id="text_lable" layoutX="43.0" layoutY="30.0" prefHeight="42.0" prefWidth="400.0" text="Data Detail Kelas">
+                     <font>
+                        <Font name="Century Gothic Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <Pane fx:id="add" layoutX="520.0" layoutY="200.0" onMouseClicked="#handleAdd" prefHeight="36.0" prefWidth="80.0" styleClass="add">
+                     <children>
+                        <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
+                           <font>
+                              <Font name="Century Gothic Bold" size="13.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <Label layoutX="45.0" layoutY="90.0" prefWidth="250.0" text="ID / Nama Anak">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="45.0" layoutY="130.0" prefWidth="250.0" text="ID / Nama Kelas">
+                     <font>
+                        <Font name="Century Gothic" size="24.0" />
+                     </font>
+                  </Label>
+                  <ComboBox fx:id="field_id_anak" editable="true" layoutX="300.0" layoutY="90.0" prefHeight="31.0" prefWidth="300.0" promptText="Cth: 1 Alexander Setiawan" />
+                  <ComboBox fx:id="field_id_kelas" editable="true" layoutX="300.0" layoutY="130.0" prefHeight="31.0" prefWidth="300.0" promptText="Cth: 1 Betania" />
+               </children>
+            </AnchorPane>
+         </children>
+      </VBox>
+   </children>
+</HBox>

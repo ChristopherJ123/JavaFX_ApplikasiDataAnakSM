@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" styleClass="blank_space" stylesheets="@../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.AppController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" styleClass="blank_space" stylesheets="@../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.DataAnakSMController">
    <children>
       <VBox prefHeight="680.0" prefWidth="200.0">
          <children>
@@ -72,12 +72,12 @@
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE">
+                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE">
+                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
@@ -115,7 +115,7 @@
                         <TableColumn fx:id="table_guru_no_telp" prefWidth="100.0" styleClass="table-row-cell" text="No. Telepon" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="table_kelas" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
+                  <TableView fx:id="table_kelas" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css">
                      <columns>
                         <TableColumn fx:id="table_kelas_id_kelas" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_kelas_nama_kelas" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
@@ -147,7 +147,7 @@
                         <TableColumn fx:id="table_laporan_total_laporan" prefWidth="159.20001220703125" styleClass="table-row-cell" text="Kehadiran Tahunan" />
                      </columns>
                   </TableView>
-                  <Pane fx:id="add" layoutX="43.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="add">
+                  <Pane fx:id="add" layoutX="43.0" layoutY="550.0" onMouseClicked="#handleAddButtonClick" prefHeight="36.0" prefWidth="79.0" styleClass="add">
                      <children>
                         <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
                            <font>
@@ -158,7 +158,7 @@
                   </Pane>
                   <Pane fx:id="remove" layoutX="241.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="remove">
                      <children>
-                        <Label layoutX="15.0" layoutY="11.0" text="Remove" textFill="WHITE">
+                        <Label layoutX="15.0" layoutY="11.0" onMouseClicked="#handleRemoveButtonClick" text="Remove" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="12.0" />
                            </font>
@@ -167,14 +167,14 @@
                   </Pane>
                   <Pane fx:id="edit" layoutX="142.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="edit">
                      <children>
-                        <Label layoutX="29.0" layoutY="11.0" text="Edit" textFill="WHITE">
+                        <Label layoutX="29.0" layoutY="11.0" onMouseClicked="#handleEditButtonClick" text="Edit" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="13.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <TextArea fx:id="text_area_laporan" editable="false" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" />
+                  <TextArea fx:id="text_area_laporan" editable="false" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" visible="false" />
                </children>
             </AnchorPane>
          </children>

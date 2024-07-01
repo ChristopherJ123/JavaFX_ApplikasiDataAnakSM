@@ -5,15 +5,20 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
+import javafx.stage.Stage;
 
+import java.io.IOException;
 import java.sql.*;
 import java.sql.Date;
 import java.util.*;
 
-public class AppController {
+public class DataAnakSMController {
     @FXML
     private ComboBox<?> combo_box_tahun_ajaran;
 
@@ -257,6 +262,64 @@ public class AppController {
         text_area_laporan.setVisible(true);
     }
 
+    public void handleAddButtonClick(MouseEvent event) throws IOException, SQLException {
+        switch (buttonId) {
+            case "button_anak" -> {
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/anak-dialog.fxml"));
+                Scene scene = new Scene(appLoader.load());
+                Stage stage = new Stage();
+                stage.setTitle("Input Anak");
+                stage.setScene(scene);
+                stage.show();
+                updateTable(buttonId);
+            }
+            case "button_guru" -> {
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/guru-dialog.fxml"));
+                Scene scene = new Scene(appLoader.load());
+                Stage stage = new Stage();
+                stage.setTitle("Input Guru");
+                stage.setScene(scene);
+                stage.show();
+                updateTable(buttonId);
+            }
+            case "button_kelas" -> {
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kelas-dialog.fxml"));
+                Scene scene = new Scene(appLoader.load());
+                Stage stage = new Stage();
+                stage.setTitle("Input Kelas");
+                stage.setScene(scene);
+                stage.show();
+                updateTable(buttonId);
+            }
+            case "button_kehadiran" -> {
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kehadiran-dialog.fxml"));
+                Scene scene = new Scene(appLoader.load());
+                Stage stage = new Stage();
+                stage.setTitle("Input Kehadiran");
+                stage.setScene(scene);
+                stage.show();
+                updateTable(buttonId);
+            }
+            case "button_kebaktian" -> {
+                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kebaktian-dialog.fxml"));
+                Scene scene = new Scene(appLoader.load());
+                Stage stage = new Stage();
+                stage.setTitle("Input Kebaktian");
+                stage.setScene(scene);
+                stage.show();
+                updateTable(buttonId);
+            }
+        }
+    }
+
+    public void handleEditButtonClick(MouseEvent event) {
+
+    }
+
+    public void handleRemoveButtonClick(MouseEvent event) {
+
+    }
+
     private void updateTableViewVisibility() throws SQLException {
         for (TableView<?> tableView : tableViews) {
             tableView.setVisible(false);
@@ -281,10 +344,6 @@ public class AppController {
             case "button_kebaktian" -> {
                 table_kebaktian.setVisible(true);
                 text_lable.setText("Tabel Kebaktian");
-            }
-            case "button_laporan" -> {
-                table_laporan.setVisible(true);
-                text_lable.setText("Tabel Laporan");
             }
             case "button_laporan_mingguan" -> {
                 text_lable.setText("Laporan Mingguan");
