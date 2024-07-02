@@ -47,7 +47,7 @@
                               <Font name="Century Gothic Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="field_nomor_telpon_guru" layoutX="309.0" layoutY="10.0" prefHeight="41.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
+                        <TextField fx:id="field_no_telp" layoutX="309.0" layoutY="10.0" prefHeight="41.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
                      </children>
                   </Pane>
                   <Pane layoutY="133.0" prefHeight="56.0" prefWidth="660.0">
@@ -57,7 +57,7 @@
                               <Font name="Century Gothic Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="field_alamat_guru" layoutX="309.0" layoutY="10.0" prefHeight="41.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
+                        <TextField fx:id="field_alamat" layoutX="309.0" layoutY="10.0" prefHeight="41.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
                      </children>
                   </Pane>
                </children>

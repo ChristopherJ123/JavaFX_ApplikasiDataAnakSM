@@ -3,7 +3,9 @@
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -23,9 +25,9 @@
                         <Image url="@../../assets/images/addAnakPage.png" />
                      </image>
                   </ImageView>
-                  <Pane fx:id="add" layoutX="544.0" layoutY="407.0" onMouseClicked="#handleAddButtonClick" prefHeight="36.0" prefWidth="79.0" styleClass="add">
+                  <Pane fx:id="add" layoutX="544.0" layoutY="407.0" onMouseClicked="#handleAdd" prefHeight="36.0" prefWidth="79.0" styleClass="add">
                      <children>
-                        <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
+                        <Label fx:id="submitButt" layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="13.0" />
                            </font>
@@ -68,13 +70,16 @@
                            <font>
                               <Font name="Century Gothic Bold" size="12.0" />
                            </font>
+                           <toggleGroup>
+                              <ToggleGroup fx:id="gender" />
+                           </toggleGroup>
                         </RadioButton>
                         <Label alignment="CENTER_RIGHT" layoutX="185.0" prefHeight="41.0" prefWidth="108.0" text="Gender" textAlignment="RIGHT">
                            <font>
                               <Font name="Century Gothic Bold" size="19.0" />
                            </font>
                         </Label>
-                        <RadioButton fx:id="field_gender_perempuan" layoutX="409.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="108.0" text="Perempuan">
+                        <RadioButton fx:id="field_gender_perempuan" layoutX="409.0" mnemonicParsing="false" prefHeight="41.0" prefWidth="108.0" text="Perempuan" toggleGroup="$gender">
                            <font>
                               <Font name="Century Gothic Bold" size="12.0" />
                            </font>
@@ -98,7 +103,7 @@
                               <Font name="Century Gothic Bold" size="19.0" />
                            </font>
                         </Label>
-                        <TextField fx:id="field_alamat" layoutX="310.0" layoutY="8.0" prefHeight="68.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
+                        <TextArea fx:id="field_alamat" layoutX="310.0" layoutY="8.0" prefHeight="68.0" prefWidth="307.0" promptText="Optional" styleClass="window-button" />
                      </children>
                   </Pane>
                </children>
