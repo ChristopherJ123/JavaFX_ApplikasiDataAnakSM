@@ -21,7 +21,7 @@ import java.util.*;
 
 public class DataAnakSMController {
     @FXML
-    private ComboBox<?> combo_box_tahun_ajaran;
+    private ComboBox<String> combo_box_tahun_ajaran;
 
     @FXML
     private ComboBox<?> combo_box_kelas;
@@ -67,6 +67,21 @@ public class DataAnakSMController {
 
     @FXML
     private Button button_laporan_tahunan;
+
+    @FXML
+    private Button button_laporan_1;
+
+    @FXML
+    private Button button_laporan_2;
+
+    @FXML
+    private Button button_laporan_3;
+
+    @FXML
+    private Button button_laporan_4;
+
+    @FXML
+    private Button button_laporan_5;
 
     @FXML
     private Label text_lable;
@@ -226,6 +241,11 @@ public class DataAnakSMController {
         setButtonHoverEffect(button_laporan);
         setButtonHoverEffect(button_laporan_mingguan);
         setButtonHoverEffect(button_laporan_tahunan);
+        setButtonHoverEffect(button_laporan_1);
+        setButtonHoverEffect(button_laporan_2);
+        setButtonHoverEffect(button_laporan_3);
+        setButtonHoverEffect(button_laporan_4);
+        setButtonHoverEffect(button_laporan_5);
 
         menuButtons = new ArrayList<>();
         menuButtons.add(button_anak);
@@ -240,6 +260,11 @@ public class DataAnakSMController {
         laporanButtons = new ArrayList<>();
         laporanButtons.add(button_laporan_mingguan);
         laporanButtons.add(button_laporan_tahunan);
+        laporanButtons.add(button_laporan_1);
+        laporanButtons.add(button_laporan_2);
+        laporanButtons.add(button_laporan_3);
+        laporanButtons.add(button_laporan_4);
+        laporanButtons.add(button_laporan_5);
 
         tableViews = new ArrayList<>();
         tableViews.add(table_anak);
@@ -303,6 +328,19 @@ public class DataAnakSMController {
                 kehadiranSelected = newValue;
             }
         });
+
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT DATE_PART('year', tanggal_kebaktian) AS tahun_kebaktian
+                FROM kebaktian
+                GROUP BY DATE_PART('year', tanggal_kebaktian)
+                ORDER BY tahun_kebaktian""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        combo_box_tahun_ajaran.getItems().add("Year");
+        while (rs.next()) {
+            combo_box_tahun_ajaran.getItems().add(String.valueOf(rs.getInt("tahun_kebaktian")));
+        }
     }
 
     public void handleButtonDashboardClick(ActionEvent event) throws SQLException {
@@ -651,6 +689,9 @@ public class DataAnakSMController {
                 table_guru_kelas_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
                 table_guru_kelas_id_guru.setCellValueFactory(new PropertyValueFactory<>("id_guru"));
                 table_guru_kelas_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+                table_guru_kelas_nama_guru.setCellValueFactory(new PropertyValueFactory<>("nama_guru"));
+                table_guru_kelas_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
+
             }
             case "button_kelas" -> {
                 ObservableList<Kelas> list = getKelas();
@@ -664,6 +705,8 @@ public class DataAnakSMController {
                 table_kelas_anak_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
                 table_kelas_anak_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
                 table_kelas_anak_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+                table_kelas_anak_nama_anak.setCellValueFactory(new PropertyValueFactory<>("nama_anak"));
+                table_kelas_anak_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
             }
             case "button_kehadiran" -> {
                 ObservableList<Kehadiran> list = getKehadiran();
@@ -671,7 +714,11 @@ public class DataAnakSMController {
                 table_kehadiran_id_kehadiran.setCellValueFactory(new PropertyValueFactory<>("id_kehadiran"));
                 table_kehadiran_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
                 table_kehadiran_id_kebaktian.setCellValueFactory(new PropertyValueFactory<>("id_kebaktian"));
-                table_kehadiran_status.setCellValueFactory(new PropertyValueFactory<>("status_kehadiran"));
+                table_kehadiran_status.setCellValueFactory(new PropertyValueFactory<>("deskripsi"));
+                table_kehadiran_nama_anak.setCellValueFactory(new PropertyValueFactory<>("nama_anak"));
+                table_kehadiran_nama_kebaktian.setCellValueFactory(new PropertyValueFactory<>("nama_kebaktian"));
+                table_kehadiran_tanggal_kebaktian.setCellValueFactory(new PropertyValueFactory<>("tanggal_kebaktian"));
+
             }
             case "button_kebaktian" -> {
                 ObservableList<Kebaktian> list = getKebaktian();
@@ -794,17 +841,21 @@ public class DataAnakSMController {
         ObservableList<KelasAnak> listKelasAnak = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM kelas_anak
-        """;
+            SELECT ka.*, a.nama_anak, k.nama_kelas 
+            FROM kelas_anak ka 
+            JOIN anak a ON ka.id_anak = a.id_anak 
+            JOIN kelas k ON ka.id_kelas = k.id_kelas
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             KelasAnak kelasAnak = new KelasAnak(rs.getInt("id_anak"), rs.getInt("id_kelas"),
-                    rs.getDate("created_at"));
+                    rs.getDate("created_at"), rs.getString("nama_anak"), rs.getString("nama_kelas"));
             listKelasAnak.add(kelasAnak);
         }
         return listKelasAnak;
     }
+
 
     public ObservableList<Kelas> getKelas() throws SQLException {
         ObservableList<Kelas> listKelas = FXCollections.observableArrayList();
@@ -843,13 +894,16 @@ public class DataAnakSMController {
         ObservableList<GuruKelas> listGuruKelas = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM guru_kelas
-        """;
+            SELECT gk.*, g.nama_guru, k.nama_kelas 
+            FROM guru_kelas gk 
+            JOIN guru g ON gk.id_guru = g.id_guru 
+            JOIN kelas k ON gk.id_kelas = k.id_kelas
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             GuruKelas guruKelas = new GuruKelas(rs.getInt("id_kelas"), rs.getInt("id_guru"),
-                    rs.getDate("created_at"));
+                    rs.getDate("created_at"), rs.getString("nama_guru"), rs.getString("nama_kelas"));
             listGuruKelas.add(guruKelas);
         }
         return listGuruKelas;
@@ -859,19 +913,25 @@ public class DataAnakSMController {
         ObservableList<Kehadiran> listKehadiran = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM kehadiran
-        """;
+            SELECT kh.*, a.nama_anak, k.nama_kebaktian, k.tanggal_kebaktian, s.deskripsi 
+            FROM kehadiran kh 
+            JOIN anak a ON kh.id_anak = a.id_anak 
+            JOIN kebaktian k ON kh.id_kebaktian = k.id_kebaktian
+            JOIN status s ON kh.status_kehadiran = s.status_kehadiran
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             Kehadiran kehadiran = new Kehadiran(rs.getInt("id_kehadiran"),
                     rs.getInt("status_kehadiran"), rs.getInt("id_kebaktian"),
-                    rs.getInt("id_anak")
-            );
+                    rs.getInt("id_anak"), rs.getString("nama_anak"),
+                    rs.getString("nama_kebaktian"), rs.getDate("tanggal_kebaktian"),
+                    rs.getString("deskripsi"));
             listKehadiran.add(kehadiran);
         }
         return listKehadiran;
     }
+
 
     public ObservableList<Kebaktian> getKebaktian() throws SQLException {
         ObservableList<Kebaktian> listKebaktian = FXCollections.observableArrayList();

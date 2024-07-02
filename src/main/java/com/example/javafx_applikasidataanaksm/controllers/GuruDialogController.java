@@ -57,7 +57,7 @@ public class GuruDialogController {
             String query = """
                 UPDATE guru
                 SET nama_guru = ?, no_telp_guru = ?, alamat = ?
-                WHERE guru_id = ?
+                WHERE id_guru = ?
                 """;
             st = con.prepareStatement(query);
             st.setString(1, field_nama_guru.getText());
