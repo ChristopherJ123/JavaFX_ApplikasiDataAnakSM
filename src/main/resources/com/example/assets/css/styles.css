@@ -160,6 +160,12 @@
     -fx-padding: 10px;
 }
 
+.text-field {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
 .button_register {
     -fx-font-size: 10px;
             -fx-background-color: #2A3957;
