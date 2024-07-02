@@ -9,7 +9,7 @@ public class DBConnection {
     public static Connection dbLink;
 
     public static Connection getConnection() {
-        String dbName = "AplikasiDataAnakSM";
+        String dbName = "AplikasiDataAnakSM2";
         String dbUser = "postgres";
         String dbPass = "admin";
         String url = "jdbc:postgresql://localhost:5432/" + dbName;

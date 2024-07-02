@@ -802,54 +802,50 @@ public class DataAnakSMController {
     }
 
     public void viewLaporanTahunan() throws SQLException {
-        text_area_laporan.setText("");
-        con = DBConnection.getConnection();
-        String query1 = """
-                SELECT id_kelas, nama_kelas FROM kelas
-                """;
-        st = con.prepareStatement(query1);
-        rs = st.executeQuery();
-        Map<Integer, String> kelasList = new HashMap<>();
-        while (rs.next()) {
-            kelasList.put(rs.getInt("id_kelas"), rs.getString("nama_kelas"));
-        }
-        con = DBConnection.getConnection();
-        String query2 = """
-                SELECT a.id_anak, a.nama_anak, COUNT(*) AS total_kehadirans
-                FROM kehadiran kh
-                JOIN anak a
-                ON a.id_anak = kh.id_anak
-                JOIN kelas_anak ka
-                ON ka.id_anak = a.id_anak
-                JOIN kelas k
-                ON k.id_kelas = ka.id_kelas
-                JOIN kebaktian ke
-                ON ke.id_kebaktian = kh.id_kebaktian
-                WHERE kh.status_kehadiran = 1 AND k.id_kelas = ? AND EXTRACT (YEAR FROM ke.tanggal_kebaktian) >= ? AND EXTRACT (YEAR FROM ke.tanggal_kebaktian) < ?
-                GROUP BY a.id_anak""";
-        for (int i = 1; i <= kelasList.size(); i++) {
-            st = con.prepareStatement(query2);
-            st.setInt(1, i);
-            try {
-                st.setInt(2, Integer.parseInt(combo_box_tahun_ajaran.getValue()));
-                st.setInt(3, Integer.parseInt(combo_box_tahun_ajaran.getValue()+1));
-            } catch (Exception e) {
-                st.setInt(2, 0);
-                st.setInt(3, 9999);
-            }
+        if (combo_box_tahun_ajaran.getValue() != null) {
+            text_area_laporan.setText("");
+            con = DBConnection.getConnection();
+            String query1 = """
+                    SELECT id_kelas, nama_kelas FROM kelas
+                    """;
+            st = con.prepareStatement(query1);
             rs = st.executeQuery();
-            text_area_laporan.setText(text_area_laporan.getText() +
-                    kelasList.get(i) + "\n" + """
-                ID Anak \t\t\t Nama Anak \t\t Total Kehadiran
-                """);
+            Map<Integer, String> kelasList = new HashMap<>();
             while (rs.next()) {
-                text_area_laporan.setText(text_area_laporan.getText() +
-                        rs.getString(1) + "\t\t\t" + rs.getString(2) + "\t\t" + rs.getInt(3)
-                        + "\n"
-                );
+                kelasList.put(rs.getInt("id_kelas"), rs.getString("nama_kelas"));
             }
-            text_area_laporan.setText(text_area_laporan.getText() + "\n\n");
-        }
+            con = DBConnection.getConnection();
+            String query2 = """
+                    SELECT a.id_anak, a.nama_anak, COUNT(*) AS total_kehadirans
+                    FROM kehadiran kh
+                    JOIN anak a
+                    ON a.id_anak = kh.id_anak
+                    JOIN kelas_anak ka
+                    ON ka.id_anak = a.id_anak
+                    JOIN kelas k
+                    ON k.id_kelas = ka.id_kelas
+                    JOIN kebaktian ke
+                    ON ke.id_kebaktian = kh.id_kebaktian
+                    WHERE kh.status_kehadiran = 1 AND k.id_kelas = ? AND EXTRACT (YEAR FROM ke.tanggal_kebaktian) = ?
+                    GROUP BY a.id_anak""";
+            for (int i = 1; i <= kelasList.size(); i++) {
+                st = con.prepareStatement(query2);
+                st.setInt(1, i);
+                st.setInt(2, Integer.parseInt(combo_box_tahun_ajaran.getValue()));
+                rs = st.executeQuery();
+                text_area_laporan.setText(text_area_laporan.getText() +
+                        kelasList.get(i) + "\n" + """
+                        ID Anak \t\t\t Nama Anak \t\t Total Kehadiran
+                        """);
+                while (rs.next()) {
+                    text_area_laporan.setText(text_area_laporan.getText() +
+                            rs.getString(1) + "\t\t\t" + rs.getString(2) + "\t\t" + rs.getInt(3)
+                            + "\n"
+                    );
+                }
+                text_area_laporan.setText(text_area_laporan.getText() + "\n\n");
+            }
+        } else text_area_laporan.setText("");
     }
 
     public void viewLaporan1() throws SQLException {
