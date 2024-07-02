@@ -72,14 +72,14 @@
 
 /* Header styling */
 .table-view .column-header {
-    -fx-background-color: white; /* Header background color */
+    -fx-background-color: #F3B705; /* Header background color */
     -fx-font-size: 14px;
     -fx-font-weight: bold;
 }
 
 /* Row styling */
 .table-row-cell {
-    -fx-background-color: #F3B705; /* Default row background color */
+    -fx-background-color: white; /* Default row background color */
     -fx-alternate-row-fill-visible: true;
     -fx-alternate-row-fill: #FAFAFA; /* Alternate row background color */
     -fx-font-size: 12px;
@@ -146,6 +146,7 @@
     	-fx-border-radius: 0 20px 20px 0;
     	-fx-background-radius: 0 20px 20px 0;
     	-fx-border-style: solid;
+    -fx-text-fill: #737E94;
 }
 .username-field .list-cell {
 	-fx-text-fill: #737E94;

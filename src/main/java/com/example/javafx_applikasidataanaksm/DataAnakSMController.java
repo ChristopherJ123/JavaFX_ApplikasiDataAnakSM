@@ -360,46 +360,32 @@ public class DataAnakSMController {
         stage.show();
         switch (buttonId) {
             case "button_anak" -> {
-                if (anakSelected != null) {
-                    AnakDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                AnakDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_guru" -> {
-                if (guruSelected != null) {
-                    GuruDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                GuruDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_guru_kelas" -> {
-                if (guruKelasSelected != null) {
-                    GuruKelasDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                GuruKelasDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_kelas" -> {
-                if (kelasSelected != null) {
-                    KelasDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                KelasDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_kelas_anak" -> {
-                if (kelasAnakSelected != null) {
-                    KelasAnakDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                KelasAnakDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_kehadiran" -> {
-                if (kehadiranSelected != null) {
-                    KehadiranDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                KehadiranDialogController controller = loader.getController();
+                controller.setController(this);
             }
             case "button_kebaktian" -> {
-                if (kebaktianSelected != null) {
-                    KebaktianDialogController controller = loader.getController();
-                    controller.setController(this);
-                }
+                KebaktianDialogController controller = loader.getController();
+                controller.setController(this);
             }
         }
         updateTable(buttonId);

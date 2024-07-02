@@ -84,7 +84,7 @@ public class KehadiranDialogController {
             con = DBConnection.getConnection();
             String query = """
                 UPDATE kehadiran
-                SET id_anak = ?, id_kebaktian = ?, status = ?
+                SET id_anak = ?, id_kebaktian = ?, status_kehadiran = ?
                 WHERE id_kehadiran = ?
                 """;
             st = con.prepareStatement(query);
@@ -97,7 +97,7 @@ public class KehadiranDialogController {
             // CRUD INSERT
             con = DBConnection.getConnection();
             String query = """
-                INSERT INTO kehadiran (id_anak, id_kebaktian, status)
+                INSERT INTO kehadiran (id_anak, id_kebaktian, status_kehadiran)
                 VALUES(?, ?, ?)
                 """;
             st = con.prepareStatement(query);
