@@ -3,37 +3,58 @@ package com.example.javafx_applikasidataanaksm.components;
 import java.sql.Date;
 
 public class KelasAnak {
-    private Integer id_anak;
-    private Integer id_kelas;
-    private Date created_at;
+    private int idAnak;
+    private int idKelas;
+    private Date createdAt;
+    private String namaAnak;
+    private String namaKelas;
 
-    public KelasAnak(Integer id_anak, Integer id_kelas, Date created_at) {
-        this.id_anak = id_anak;
-        this.id_kelas = id_kelas;
-        this.created_at = created_at;
+    public KelasAnak(int idAnak, int idKelas, Date createdAt, String namaAnak, String namaKelas) {
+        this.idAnak = idAnak;
+        this.idKelas = idKelas;
+        this.createdAt = createdAt;
+        this.namaAnak = namaAnak;
+        this.namaKelas = namaKelas;
     }
 
-    public Integer getId_anak() {
-        return id_anak;
+    public int getIdAnak() {
+        return idAnak;
     }
 
-    public void setId_anak(Integer id_anak) {
-        this.id_anak = id_anak;
+    public void setIdAnak(int idAnak) {
+        this.idAnak = idAnak;
     }
 
-    public Integer getId_kelas() {
-        return id_kelas;
+    public int getIdKelas() {
+        return idKelas;
     }
 
-    public void setId_kelas(Integer id_kelas) {
-        this.id_kelas = id_kelas;
+    public void setIdKelas(int idKelas) {
+        this.idKelas = idKelas;
     }
 
-    public Date getCreated_at() {
-        return created_at;
+    public Date getCreatedAt() {
+        return createdAt;
     }
 
-    public void setCreated_at(Date created_at) {
-        this.created_at = created_at;
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    public String getNamaAnak() {
+        return namaAnak;
+    }
+
+    public void setNamaAnak(String namaAnak) {
+        this.namaAnak = namaAnak;
+    }
+
+    public String getNamaKelas() {
+        return namaKelas;
+    }
+
+    public void setNamaKelas(String namaKelas) {
+        this.namaKelas = namaKelas;
     }
 }
+

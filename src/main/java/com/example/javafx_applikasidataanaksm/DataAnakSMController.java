@@ -430,11 +430,11 @@ public class DataAnakSMController {
                 if (guruKelasSelected != null) {
                     GuruKelasDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setKelasIDToUpdate(guruKelasSelected.getId_kelas());
-                    controller.setGuruIDToUpdate(guruKelasSelected.getId_guru());
+                    controller.setKelasIDToUpdate(guruKelasSelected.getIdKelas());
+                    controller.setGuruIDToUpdate(guruKelasSelected.getIdGuru());
                     controller.setUpdate(true);
-                    controller.setField_id_guru(guruKelasSelected.getId_guru());
-                    controller.setField_id_kelas(guruKelasSelected.getId_kelas());
+                    controller.setField_id_guru(guruKelasSelected.getIdGuru());
+                    controller.setField_id_kelas(guruKelasSelected.getIdKelas());
                 }
             }
             case "button_kelas" -> {
@@ -450,21 +450,21 @@ public class DataAnakSMController {
                 if (kelasAnakSelected != null) {
                     KelasAnakDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setAnakIDToUpdate(kelasAnakSelected.getId_anak());
-                    controller.setKelasIDToUpdate(kelasAnakSelected.getId_kelas());
+                    controller.setAnakIDToUpdate(kelasAnakSelected.getIdAnak());
+                    controller.setKelasIDToUpdate(kelasAnakSelected.getIdKelas());
                     controller.setUpdate(true);
-                    controller.setField_id_anak(kelasAnakSelected.getId_anak());
-                    controller.setField_id_kelas(kelasAnakSelected.getId_kelas());
+                    controller.setField_id_anak(kelasAnakSelected.getIdAnak());
+                    controller.setField_id_kelas(kelasAnakSelected.getIdKelas());
                 }
             }
             case "button_kehadiran" -> {
                 if (kehadiranSelected != null) {
                     KehadiranDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setKehadiranIDToUpdate(kehadiranSelected.getId_kehadiran());
+                    controller.setKehadiranIDToUpdate(kehadiranSelected.getIdKehadiran());
                     controller.setUpdate(true);
-                    controller.setField_id_anak(kehadiranSelected.getId_anak());
-                    controller.setField_id_kebaktian(kehadiranSelected.getId_kebaktian());
+                    controller.setField_id_anak(kehadiranSelected.getIdAnak());
+                    controller.setField_id_kebaktian(kehadiranSelected.getIdKebaktian());
                     controller.setField_hadir(kehadiranSelected.getStatus());
                 }
             }
@@ -508,8 +508,8 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM guru_kelas WHERE id_guru = ? AND id_kelas = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, guruKelasSelected.getId_guru());
-                    st.setInt(2, guruKelasSelected.getId_kelas());
+                    st.setInt(1, guruKelasSelected.getIdGuru());
+                    st.setInt(2, guruKelasSelected.getIdKelas());
                     st.execute();
                 }
             }
@@ -527,8 +527,8 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM kelas_anak WHERE id_kelas = ? AND id_anak = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, kelasAnakSelected.getId_kelas());
-                    st.setInt(2, kelasAnakSelected.getId_anak());
+                    st.setInt(1, kelasAnakSelected.getIdKelas());
+                    st.setInt(2, kelasAnakSelected.getIdAnak());
                     st.execute();
                 }
             }
@@ -537,7 +537,7 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM kehadiran WHERE id_kehadiran = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, kehadiranSelected.getId_kehadiran());
+                    st.setInt(1, kehadiranSelected.getIdKehadiran());
                     st.execute();
                 }
             }
@@ -794,17 +794,21 @@ public class DataAnakSMController {
         ObservableList<KelasAnak> listKelasAnak = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM kelas_anak
-        """;
+            SELECT ka.*, a.nama_anak, k.nama_kelas 
+            FROM kelas_anak ka 
+            JOIN anak a ON ka.id_anak = a.id_anak 
+            JOIN kelas k ON ka.id_kelas = k.id_kelas
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             KelasAnak kelasAnak = new KelasAnak(rs.getInt("id_anak"), rs.getInt("id_kelas"),
-                    rs.getDate("created_at"));
+                    rs.getDate("created_at"), rs.getString("nama_anak"), rs.getString("nama_kelas"));
             listKelasAnak.add(kelasAnak);
         }
         return listKelasAnak;
     }
+
 
     public ObservableList<Kelas> getKelas() throws SQLException {
         ObservableList<Kelas> listKelas = FXCollections.observableArrayList();
@@ -843,13 +847,16 @@ public class DataAnakSMController {
         ObservableList<GuruKelas> listGuruKelas = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM guru_kelas
-        """;
+            SELECT gk.*, g.nama_guru, k.nama_kelas 
+            FROM guru_kelas gk 
+            JOIN guru g ON gk.id_guru = g.id_guru 
+            JOIN kelas k ON gk.id_kelas = k.id_kelas
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             GuruKelas guruKelas = new GuruKelas(rs.getInt("id_kelas"), rs.getInt("id_guru"),
-                    rs.getDate("created_at"));
+                    rs.getDate("created_at"), rs.getString("nama_guru"), rs.getString("nama_kelas"));
             listGuruKelas.add(guruKelas);
         }
         return listGuruKelas;
@@ -859,19 +866,25 @@ public class DataAnakSMController {
         ObservableList<Kehadiran> listKehadiran = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-                SELECT * FROM kehadiran
-        """;
+            SELECT kh.*, a.nama_anak, k.nama_kebaktian, k.tanggal_kebaktian, s.deskripsi 
+            FROM kehadiran kh 
+            JOIN anak a ON kh.id_anak = a.id_anak 
+            JOIN kebaktian k ON kh.id_kebaktian = k.id_kebaktian
+            JOIN status s ON kh.status_kehadiran = s.status_kehadiran
+    """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
             Kehadiran kehadiran = new Kehadiran(rs.getInt("id_kehadiran"),
                     rs.getInt("status_kehadiran"), rs.getInt("id_kebaktian"),
-                    rs.getInt("id_anak")
-            );
+                    rs.getInt("id_anak"), rs.getString("nama_anak"),
+                    rs.getString("nama_kebaktian"), rs.getDate("tanggal_kebaktian"),
+                    rs.getString("deskripsi"));
             listKehadiran.add(kehadiran);
         }
         return listKehadiran;
     }
+
 
     public ObservableList<Kebaktian> getKebaktian() throws SQLException {
         ObservableList<Kebaktian> listKebaktian = FXCollections.observableArrayList();
