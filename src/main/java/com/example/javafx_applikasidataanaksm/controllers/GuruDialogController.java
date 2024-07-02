@@ -15,9 +15,6 @@ import java.sql.SQLException;
 public class GuruDialogController {
 
     @FXML
-    private Label text_lable;
-
-    @FXML
     private TextField field_nama_guru;
 
     @FXML

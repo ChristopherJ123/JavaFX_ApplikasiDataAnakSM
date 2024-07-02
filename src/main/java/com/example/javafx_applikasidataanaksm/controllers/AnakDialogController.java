@@ -11,9 +11,6 @@ import java.sql.*;
 public class AnakDialogController {
 
     @FXML
-    private Label text_lable;
-
-    @FXML
     private TextField field_nama_anak;
 
     @FXML
