@@ -42,47 +42,57 @@
                      </font>
                   </Button>
                   <ComboBox fx:id="combo_box_tahun_ajaran" layoutX="22.0" layoutY="182.0" prefWidth="150.0" promptText="Tahun Ajaran" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
-                  <Button fx:id="button_anak" layoutX="16.0" layoutY="280.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE" visible="false">
+                  <Button fx:id="button_anak" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_guru" layoutX="16.0" layoutY="340.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE" visible="false">
+                  <Button fx:id="button_guru" layoutX="16.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE" visible="false">
+                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="460.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE" visible="false">
+                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="520.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE" visible="false">
+                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="580.0" mnemonicParsing="false" onAction="#handleButtonLaporanClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE" visible="false">
+                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleButtonLaporanClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE">
+                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE">
+                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <ComboBox fx:id="combo_box_kelas" layoutX="22.0" layoutY="250.0" prefWidth="150.0" promptText="Kelas" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
+                  <ComboBox fx:id="combo_box_kelas" layoutX="22.0" layoutY="250.0" prefWidth="150.0" promptText="Kelas" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" visible="false" />
+                  <Button fx:id="button_kelas_anak" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas Anak" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_guru_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru Kelas" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>
@@ -121,30 +131,40 @@
                         <TableColumn fx:id="table_kelas_nama_kelas" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="table_kehadiran" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
-                     <columns>
-                        <TableColumn fx:id="table_kehadiran_id_kehadiran" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
-                        <TableColumn fx:id="table_kehadiran_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
-                        <TableColumn fx:id="table_kehadiran_judul_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
-                        <TableColumn fx:id="table_kehadiran_nama_kehadiran" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
-                        <TableColumn fx:id="table_kehadiran_kehadiran" prefWidth="103.99990844726562" styleClass="table-row-cell" text="Kehadiran" />
-                     </columns>
-                  </TableView>
                   <TableView fx:id="table_kebaktian" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
                         <TableColumn fx:id="table_kebaktian_id_kebaktian" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
                         <TableColumn fx:id="table_kebaktian_tanggal_kebaktian" minWidth="0.0" prefWidth="120.00000762939453" styleClass="table-row-cell" text="Tanggal Kebaktian" />
                         <TableColumn fx:id="table_kebaktian_nama_kebaktian" prefWidth="121.60003662109375" styleClass="table-row-cell" text="Judul Kebaktian" />
-                        <TableColumn fx:id="table_kebaktian_laki_kebaktian" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Laki - Laki" />
-                        <TableColumn fx:id="table_kebaktian_perempuan_kebaktian" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Perempuan" />
-                        <TableColumn fx:id="table_kebaktian_total_kehadiran" prefWidth="78.4000244140625" styleClass="table-row-cell" text="Total" />
                      </columns>
                   </TableView>
-                  <TableView fx:id="table_laporan" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
+                  <TableView fx:id="table_kehadiran" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
                      <columns>
-                        <TableColumn fx:id="table_laporan_no_laporan" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
-                        <TableColumn fx:id="table_laporan_nama_laporan" prefWidth="113.5999755859375" styleClass="table-row-cell" text="Nama" />
-                        <TableColumn fx:id="table_laporan_total_laporan" prefWidth="159.20001220703125" styleClass="table-row-cell" text="Kehadiran Tahunan" />
+                        <TableColumn fx:id="table_kehadiran_id_kehadiran" prefWidth="41.5999755859375" styleClass="table-row-cell" text="No." />
+                        <TableColumn fx:id="table_kehadiran_id_anak" prefWidth="84.0" styleClass="table-row-cell" text="ID Anak" />
+                        <TableColumn fx:id="table_kehadiran_id_kebaktian" prefWidth="92.0" styleClass="table-row-cell" text="ID Kebaktian" />
+                        <TableColumn fx:id="table_kehadiran_status" prefWidth="92.00003051757812" styleClass="table-row-cell" text="Kehadiran" />
+                        <TableColumn fx:id="table_kehadiran_nama_anak" prefWidth="171.199951171875" styleClass="table-row-cell" text="Nama Anak" />
+                        <TableColumn fx:id="table_kehadiran_nama_kebaktian" prefWidth="290.4000244140625" styleClass="table-row-cell" text="Nama Kebaktian" />
+                        <TableColumn fx:id="table_kehadiran_tanggal_kebaktian" prefWidth="170.39996337890625" styleClass="table-row-cell" text="Tanggal Kebaktian" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="table_guru_kelas" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
+                     <columns>
+                        <TableColumn fx:id="table_guru_kelas_created_at" prefWidth="119.20001220703125" styleClass="table-row-cell" text="Created At" />
+                        <TableColumn fx:id="table_guru_kelas_id_guru" prefWidth="76.0" styleClass="table-row-cell" text="ID Guru" />
+                        <TableColumn fx:id="table_guru_kelas_id_kelas" prefWidth="75.19998168945312" styleClass="table-row-cell" text="ID Kelas" />
+                        <TableColumn fx:id="table_guru_kelas_nama_guru" prefWidth="176.800048828125" styleClass="table-row-cell" text="Nama Guru" />
+                        <TableColumn fx:id="table_guru_kelas_nama_kelas" prefWidth="152.7999267578125" styleClass="table-row-cell" text="Nama Kelas" />
+                     </columns>
+                  </TableView>
+                  <TableView fx:id="table_kelas_anak" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" stylesheets="@../assets/css/styles.css" visible="false">
+                     <columns>
+                        <TableColumn fx:id="table_kelas_anak_created_at" prefWidth="99.99993896484375" styleClass="table-row-cell" text="Created At" />
+                        <TableColumn fx:id="table_kelas_anak_id_anak" prefWidth="69.59991455078125" styleClass="table-row-cell" text="ID Anak" />
+                        <TableColumn fx:id="table_kelas_anak_id_kelas" prefWidth="69.5999755859375" styleClass="table-row-cell" text="ID Kelas" />
+                        <TableColumn fx:id="table_kelas_anak_nama_anak" prefWidth="184.80007934570312" styleClass="table-row-cell" text="Nama Anak" />
+                        <TableColumn fx:id="table_kelas_anak_nama_kelas" prefWidth="184.80007934570312" styleClass="table-row-cell" text="Nama Kelas" />
                      </columns>
                   </TableView>
                   <Pane fx:id="add" layoutX="43.0" layoutY="550.0" onMouseClicked="#handleAddButtonClick" prefHeight="36.0" prefWidth="79.0" styleClass="add">
@@ -174,7 +194,7 @@
                         </Label>
                      </children>
                   </Pane>
-                  <TextArea fx:id="text_area_laporan" editable="false" layoutX="45.0" layoutY="120.0" prefHeight="400.0" prefWidth="600.0" visible="false" />
+                  <TextArea fx:id="text_area_laporan" editable="false" layoutX="45.0" layoutY="120.0" prefHeight="500.0" prefWidth="600.0" visible="false" />
                </children>
             </AnchorPane>
          </children>

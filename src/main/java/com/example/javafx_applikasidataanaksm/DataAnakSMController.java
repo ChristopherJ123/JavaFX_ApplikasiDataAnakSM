@@ -41,7 +41,13 @@ public class DataAnakSMController {
     private Button button_anak;
 
     @FXML
+    private Button button_kelas_anak;
+
+    @FXML
     private Button button_guru;
+
+    @FXML
+    private Button button_guru_kelas;
 
     @FXML
     private Button button_kebaktian;
@@ -107,6 +113,24 @@ public class DataAnakSMController {
     private TableColumn<Guru, String> table_guru_no_telp;
 
     @FXML
+    private TableView<GuruKelas> table_guru_kelas;
+
+    @FXML
+    private TableColumn<GuruKelas, Integer> table_guru_kelas_id_kelas;
+
+    @FXML
+    private TableColumn<GuruKelas, Integer> table_guru_kelas_id_guru;
+
+    @FXML
+    private TableColumn<GuruKelas, String> table_guru_kelas_nama_kelas;
+
+    @FXML
+    private TableColumn<GuruKelas, String> table_guru_kelas_nama_guru;
+
+    @FXML
+    private TableColumn<GuruKelas, Date> table_guru_kelas_created_at;
+
+    @FXML
     private TableView<Kelas> table_kelas;
 
     @FXML
@@ -116,22 +140,46 @@ public class DataAnakSMController {
     private TableColumn<Kelas, Integer> table_kelas_nama_kelas;
 
     @FXML
+    private TableView<KelasAnak> table_kelas_anak;
+
+    @FXML
+    private TableColumn<KelasAnak, Integer> table_kelas_anak_id_anak;
+
+    @FXML
+    private TableColumn<KelasAnak, Integer> table_kelas_anak_id_kelas;
+
+    @FXML
+    private TableColumn<KelasAnak, String> table_kelas_anak_nama_anak;
+
+    @FXML
+    private TableColumn<KelasAnak, String> table_kelas_anak_nama_kelas;
+
+    @FXML
+    private TableColumn<KelasAnak, Date> table_kelas_anak_created_at;
+
+    @FXML
     private TableView<Kehadiran> table_kehadiran;
 
     @FXML
     private TableColumn<Kehadiran, Integer> table_kehadiran_id_kehadiran;
 
     @FXML
+    private TableColumn<Kehadiran, Integer> table_kehadiran_id_anak;
+
+    @FXML
+    private TableColumn<Kehadiran, Integer> table_kehadiran_id_kebaktian;
+
+    @FXML
+    private TableColumn<Kehadiran, Integer> table_kehadiran_status;
+
+    @FXML
     private TableColumn<Kehadiran, Date> table_kehadiran_tanggal_kebaktian;
 
     @FXML
-    private TableColumn<Kehadiran, String> table_kehadiran_judul_kebaktian;
+    private TableColumn<Kehadiran, String> table_kehadiran_nama_kebaktian;
 
     @FXML
-    private TableColumn<Kehadiran, String> table_kehadiran_nama_kehadiran;
-
-    @FXML
-    private TableColumn<Kehadiran, Date> table_kehadiran_kehadiran;
+    private TableColumn<Kehadiran, String> table_kehadiran_nama_anak;
 
     @FXML
     private TableView<Kebaktian> table_kebaktian;
@@ -145,31 +193,13 @@ public class DataAnakSMController {
     @FXML
     private TableColumn<Kebaktian, String> table_kebaktian_nama_kebaktian;
 
-    @FXML
-    private TableColumn<Kebaktian, Integer> table_kebaktian_laki_kebaktian;
-
-    @FXML
-    private TableColumn<Kebaktian, Integer> table_kebaktian_perempuan_kebaktian;
-
-    @FXML
-    private TableColumn<Kebaktian, Integer> table_kebaktian_total_kehadiran;
-
-    @FXML
-    private TableView<?> table_laporan;
-
-    @FXML
-    private TableColumn<?, ?> table_laporan_no_laporan;
-
-    @FXML
-    private TableColumn<?, ?> table_laporan_nama_laporan;
-
-    @FXML
-    private TableColumn<?, ?> table_laporan_total_laporan;
-
     private List<Button> menuButtons;
     private List<Button> laporanButtons;
     private List<TableView<?>> tableViews;
+    private List<Pane> CRUDPanes;
     private String buttonId;
+    private Integer selectedParam1;
+    private Integer selectedParam2;
 
     private Connection con;
     private PreparedStatement st;
@@ -179,10 +209,10 @@ public class DataAnakSMController {
     public void initialize() throws SQLException {
         con = DBConnection.getConnection();
 
-        table_anak.setEditable(true);
-        table_anak_alamat.setEditable(true);
         setButtonHoverEffect(button_anak);
+        setButtonHoverEffect(button_kelas_anak);
         setButtonHoverEffect(button_guru);
+        setButtonHoverEffect(button_guru_kelas);
         setButtonHoverEffect(button_kelas);
         setButtonHoverEffect(button_kehadiran);
         setButtonHoverEffect(button_kebaktian);
@@ -192,7 +222,9 @@ public class DataAnakSMController {
 
         menuButtons = new ArrayList<>();
         menuButtons.add(button_anak);
+        menuButtons.add(button_kelas_anak);
         menuButtons.add(button_guru);
+        menuButtons.add(button_guru_kelas);
         menuButtons.add(button_kelas);
         menuButtons.add(button_kebaktian);
         menuButtons.add(button_kehadiran);
@@ -205,10 +237,16 @@ public class DataAnakSMController {
         tableViews = new ArrayList<>();
         tableViews.add(table_anak);
         tableViews.add(table_guru);
+        tableViews.add(table_guru_kelas);
         tableViews.add(table_kelas);
+        tableViews.add(table_kelas_anak);
         tableViews.add(table_kehadiran);
         tableViews.add(table_kebaktian);
-        tableViews.add(table_laporan);
+
+        CRUDPanes = new ArrayList<>();
+        CRUDPanes.add(add);
+        CRUDPanes.add(edit);
+        CRUDPanes.add(remove);
 
         buttonId = "button_anak";
 
@@ -222,9 +260,47 @@ public class DataAnakSMController {
         }
         combo_box_kelas.setVisible(false);
         text_area_laporan.setVisible(false);
+
+        table_anak.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_anak();
+            }
+        });
+        table_guru.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_guru();
+            }
+        });
+        table_guru_kelas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_guru();
+                selectedParam2 = newValue.getId_kelas();
+            }
+        });
+        table_kelas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_kelas();
+            }
+        });
+        table_kelas_anak.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_anak();
+                selectedParam2 = newValue.getId_kelas();
+            }
+        });
+        table_kebaktian.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_kebaktian();
+            }
+        });
+        table_kehadiran.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                selectedParam1 = newValue.getId_kehadiran();
+            }
+        });
     }
 
-    public void handleButtonDashboardClick(ActionEvent event) {
+    public void handleButtonDashboardClick(ActionEvent event) throws SQLException {
         if (!Objects.equals(buttonId, "button_dashboard")) {
             for (Button menuButton : menuButtons) {
                 menuButton.setVisible(true);
@@ -232,88 +308,62 @@ public class DataAnakSMController {
             for (Button laporanButton : laporanButtons) {
                 laporanButton.setVisible(false);
             }
+            for (Pane pane : CRUDPanes) {
+                pane.setVisible(true);
+            }
             combo_box_kelas.setVisible(false);
             text_area_laporan.setVisible(false);
-            Button clickedButton = (Button) event.getSource();
-            buttonId = clickedButton.getId();
+            buttonId = "button_anak";
+            resetButtonBackgrounds();
+            updateTableViewVisibility();
         }
     }
 
     public void handleButtonMenuClick(ActionEvent event) throws SQLException {
         Button clickedButton = (Button) event.getSource();
         resetButtonBackgrounds();
-        clickedButton.setStyle("-fx-background-color: #1f3341;");
+        clickedButton.setStyle("-fx-background-color: #212d45;");
         buttonId = clickedButton.getId();
         updateTableViewVisibility();
     }
 
-    public void handleButtonLaporanClick(ActionEvent event) {
+    public void handleButtonLaporanClick(ActionEvent event) throws SQLException {
         Button clickedButton = (Button) event.getSource();
         resetButtonBackgrounds();
         clickedButton.setStyle("-fx-background-color: #1f3341;");
-        buttonId = clickedButton.getId();
+        buttonId = "button_laporan_mingguan";
         for (Button menuButton : menuButtons) {
             menuButton.setVisible(false);
         }
         for (Button laporanButton : laporanButtons) {
             laporanButton.setVisible(true);
         }
+        for (Pane pane : CRUDPanes) {
+            pane.setVisible(false);
+        }
         combo_box_kelas.setVisible(true);
         text_area_laporan.setVisible(true);
+        updateTableViewVisibility();
     }
 
     public void handleAddButtonClick(MouseEvent event) throws IOException, SQLException {
-        switch (buttonId) {
-            case "button_anak" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/anak-dialog.fxml"));
-                Scene scene = new Scene(appLoader.load());
-                Stage stage = new Stage();
-                stage.setTitle("Input Anak");
-                stage.setScene(scene);
-                stage.show();
-                updateTable(buttonId);
-            }
-            case "button_guru" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/guru-dialog.fxml"));
-                Scene scene = new Scene(appLoader.load());
-                Stage stage = new Stage();
-                stage.setTitle("Input Guru");
-                stage.setScene(scene);
-                stage.show();
-                updateTable(buttonId);
-            }
-            case "button_kelas" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kelas_dialog.fxml"));
-                Scene scene = new Scene(appLoader.load());
-                Stage stage = new Stage();
-                stage.setTitle("Input Kelas");
-                stage.setScene(scene);
-                stage.show();
-                updateTable(buttonId);
-            }
-            case "button_kehadiran" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kehadiran-dialog.fxml"));
-                Scene scene = new Scene(appLoader.load());
-                Stage stage = new Stage();
-                stage.setTitle("Input Kehadiran");
-                stage.setScene(scene);
-                stage.show();
-                updateTable(buttonId);
-            }
-            case "button_kebaktian" -> {
-                FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/kebaktian_dialog.fxml"));
-                Scene scene = new Scene(appLoader.load());
-                Stage stage = new Stage();
-                stage.setTitle("Input Kebaktian");
-                stage.setScene(scene);
-                stage.show();
-                updateTable(buttonId);
-            }
-        }
+        FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
+        Scene scene = new Scene(appLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Input " + buttonId.replace('_', ' '));
+        stage.setScene(scene);
+        stage.show();
+        updateTable(buttonId);
     }
 
-    public void handleEditButtonClick(MouseEvent event) {
-
+    public void handleEditButtonClick(MouseEvent event) throws IOException, SQLException {
+        FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
+        Scene scene = new Scene(appLoader.load());
+        Stage stage = new Stage();
+        stage.setTitle("Input " + buttonId.replace('_', ' '));
+        stage.setScene(scene);
+        stage.show();
+        updateTable(buttonId);
     }
 
     public void handleRemoveButtonClick(MouseEvent event) {
@@ -333,9 +383,17 @@ public class DataAnakSMController {
                 table_guru.setVisible(true);
                 text_lable.setText("Tabel Guru");
             }
+            case "button_guru_kelas" -> {
+                table_guru_kelas.setVisible(true);
+                text_lable.setText("Tabel Guru Kelas");
+            }
             case "button_kelas" -> {
                 table_kelas.setVisible(true);
                 text_lable.setText("Tabel Kelas");
+            }
+            case "button_kelas_anak" -> {
+                table_kelas_anak.setVisible(true);
+                text_lable.setText("Tabel Kelas Anak");
             }
             case "button_kehadiran" -> {
                 table_kehadiran.setVisible(true);
@@ -360,7 +418,9 @@ public class DataAnakSMController {
     private void resetButtonBackgrounds() {
         button_anak.setStyle("-fx-background-color: #2C3C5C;");
         button_guru.setStyle("-fx-background-color: #2C3C5C;");
+        button_guru_kelas.setStyle("-fx-background-color: #2C3C5C;");
         button_kelas.setStyle("-fx-background-color: #2C3C5C;");
+        button_kelas_anak.setStyle("-fx-background-color: #2C3C5C;");
         button_kehadiran.setStyle("-fx-background-color: #2C3C5C;");
         button_kebaktian.setStyle("-fx-background-color: #2C3C5C;");
         button_laporan.setStyle("-fx-background-color: #2C3C5C;");
@@ -401,14 +461,33 @@ public class DataAnakSMController {
                 table_guru_alamat_guru.setCellValueFactory(new PropertyValueFactory<>("alamat"));
                 table_guru_no_telp.setCellValueFactory(new PropertyValueFactory<>("no_telp_guru"));
             }
+            case "button_guru_kelas" -> {
+                ObservableList<GuruKelas> list = getGuruKelas();
+                table_guru_kelas.setItems(list);
+                table_guru_kelas_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+                table_guru_kelas_id_guru.setCellValueFactory(new PropertyValueFactory<>("id_guru"));
+                table_guru_kelas_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+            }
             case "button_kelas" -> {
                 ObservableList<Kelas> list = getKelas();
                 table_kelas.setItems(list);
                 table_kelas_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
                 table_kelas_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
             }
+            case "button_kelas_anak" -> {
+                ObservableList<KelasAnak> list = getKelasAnak();
+                table_kelas_anak.setItems(list);
+                table_kelas_anak_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
+                table_kelas_anak_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
+                table_kelas_anak_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+            }
             case "button_kehadiran" -> {
-
+                ObservableList<Kehadiran> list = getKehadiran();
+                table_kehadiran.setItems(list);
+                table_kehadiran_id_kehadiran.setCellValueFactory(new PropertyValueFactory<>("id_kehadiran"));
+                table_kehadiran_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
+                table_kehadiran_id_kebaktian.setCellValueFactory(new PropertyValueFactory<>("id_kebaktian"));
+                table_kehadiran_status.setCellValueFactory(new PropertyValueFactory<>("status_kehadiran"));
             }
             case "button_kebaktian" -> {
                 ObservableList<Kebaktian> list = getKebaktian();
@@ -441,10 +520,10 @@ public class DataAnakSMController {
                 ON kh.id_kebaktian = kb.id_kebaktian
                 JOIN anak a
                 ON a.id_anak = kh.id_anak
-                JOIN detail_kelas dk
-                ON dk.id_anak = a.id_anak
+                JOIN kelas_anak ka
+                ON ka.id_anak = a.id_anak
                 JOIN kelas k
-                ON k.id_kelas = dk.id_kelas
+                ON k.id_kelas = ka.id_kelas
                 WHERE kh.status_kehadiran = 1 AND kb.id_kebaktian = ?
                 GROUP BY k.id_kelas
                 """;
@@ -484,10 +563,10 @@ public class DataAnakSMController {
                 FROM kehadiran kh
                 JOIN anak a
                 ON a.id_anak = kh.id_anak
-                JOIN detail_kelas dk
-                ON dk.id_anak = a.id_anak
+                JOIN kelas_anak ka
+                ON ka.id_anak = a.id_anak
                 JOIN kelas k
-                ON k.id_kelas = dk.id_kelas
+                ON k.id_kelas = ka.id_kelas
                 WHERE kh.status_kehadiran = 1 AND k.id_kelas = ?
                 GROUP BY a.id_anak
                 """;
@@ -527,6 +606,22 @@ public class DataAnakSMController {
         return listAnak;
     }
 
+    public ObservableList<KelasAnak> getKelasAnak() throws SQLException {
+        ObservableList<KelasAnak> listKelasAnak = FXCollections.observableArrayList();
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT * FROM kelas_anak
+        """;
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        while (rs.next()) {
+            KelasAnak kelasAnak = new KelasAnak(rs.getInt("id_anak"), rs.getInt("id_kelas"),
+                    rs.getDate("created_at"));
+            listKelasAnak.add(kelasAnak);
+        }
+        return listKelasAnak;
+    }
+
     public ObservableList<Kelas> getKelas() throws SQLException {
         ObservableList<Kelas> listKelas = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
@@ -541,22 +636,6 @@ public class DataAnakSMController {
             listKelas.add(kelas);
         }
         return listKelas;
-    }
-
-    public ObservableList<DetailKelas> getDetailKelas() throws SQLException {
-        ObservableList<DetailKelas> listDetailKelas = FXCollections.observableArrayList();
-        con = DBConnection.getConnection();
-        String query = """
-                SELECT * FROM detail_kelas
-        """;
-        st = con.prepareStatement(query);
-        rs = st.executeQuery();
-        while (rs.next()) {
-            DetailKelas detailKelas = new DetailKelas(rs.getInt("id_anak"), rs.getInt("id_kelas"),
-                    rs.getDate("created_at"));
-            listDetailKelas.add(detailKelas);
-        }
-        return listDetailKelas;
     }
 
     public ObservableList<Guru> getGuru() throws SQLException {
@@ -585,7 +664,7 @@ public class DataAnakSMController {
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
-            GuruKelas guruKelas = new GuruKelas(rs.getInt("id_kelas"), rs.getInt("id_anak"),
+            GuruKelas guruKelas = new GuruKelas(rs.getInt("id_kelas"), rs.getInt("id_guru"),
                     rs.getDate("created_at"));
             listGuruKelas.add(guruKelas);
         }
@@ -624,6 +703,13 @@ public class DataAnakSMController {
             listKebaktian.add(kebaktian);
         }
         return listKebaktian;
+    }
+
+    public void update() throws SQLException {
+        ObservableList<Kelas> list = getKelas();
+        table_kelas.setItems(list);
+        table_kelas_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+        table_kelas_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
     }
 
 }

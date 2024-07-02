@@ -7,27 +7,48 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 
-import java.sql.Connection;
-import java.sql.Date;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.*;
 
-public class DetailKelasDialogController {
+public class KelasAnakDialogController {
 
     @FXML
     private Label text_lable;
 
     @FXML
-    private ComboBox<Integer> field_id_anak;
+    private ComboBox<String> field_id_anak;
 
     @FXML
-    private ComboBox<Integer> field_id_kelas;
+    private ComboBox<String> field_id_kelas;
 
     @FXML
     private Pane add;
 
     Connection con;
     PreparedStatement st;
+    ResultSet rs;
+
+    @FXML
+    public void initialize() throws SQLException {
+        con = DBConnection.getConnection();
+        String queryGuru = """
+                SELECT id_anak, nama_anak FROM anak
+                """;
+        String queryKelas = """
+                SELECT id_kelas, nama_kelas FROM kelas
+                """;
+        field_id_anak.getItems().clear();
+        field_id_kelas.getItems().clear();
+        st = con.prepareStatement(queryGuru);
+        rs = st.executeQuery();
+        while (rs.next()) {
+            field_id_anak.getItems().add(rs.getInt(1) + " " + rs.getString(2));
+        }
+        st = con.prepareStatement(queryKelas);
+        rs = st.executeQuery();
+        while (rs.next()) {
+            field_id_kelas.getItems().add(rs.getInt(1) + " " + rs.getString(2));
+        }
+    }
 
     @FXML
     private void handleAdd() throws SQLException {
@@ -48,8 +69,8 @@ public class DetailKelasDialogController {
                 VALUES(?, ?)
                 """;
         st = con.prepareStatement(query);
-        st.setInt(1, field_id_anak.getValue());
-        st.setInt(2, field_id_kelas.getValue());
+        st.setInt(1, Character.getNumericValue(field_id_anak.getValue().charAt(0)));
+        st.setInt(2, Character.getNumericValue(field_id_kelas.getValue().charAt(0)));
         st.execute();
 
         add.getScene().getWindow().hide();
