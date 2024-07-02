@@ -21,7 +21,7 @@ import java.util.*;
 
 public class DataAnakSMController {
     @FXML
-    private ComboBox<?> combo_box_tahun_ajaran;
+    private ComboBox<String> combo_box_tahun_ajaran;
 
     @FXML
     private ComboBox<?> combo_box_kelas;
@@ -67,6 +67,21 @@ public class DataAnakSMController {
 
     @FXML
     private Button button_laporan_tahunan;
+
+    @FXML
+    private Button button_laporan_1;
+
+    @FXML
+    private Button button_laporan_2;
+
+    @FXML
+    private Button button_laporan_3;
+
+    @FXML
+    private Button button_laporan_4;
+
+    @FXML
+    private Button button_laporan_5;
 
     @FXML
     private Label text_lable;
@@ -226,6 +241,11 @@ public class DataAnakSMController {
         setButtonHoverEffect(button_laporan);
         setButtonHoverEffect(button_laporan_mingguan);
         setButtonHoverEffect(button_laporan_tahunan);
+        setButtonHoverEffect(button_laporan_1);
+        setButtonHoverEffect(button_laporan_2);
+        setButtonHoverEffect(button_laporan_3);
+        setButtonHoverEffect(button_laporan_4);
+        setButtonHoverEffect(button_laporan_5);
 
         menuButtons = new ArrayList<>();
         menuButtons.add(button_anak);
@@ -240,6 +260,11 @@ public class DataAnakSMController {
         laporanButtons = new ArrayList<>();
         laporanButtons.add(button_laporan_mingguan);
         laporanButtons.add(button_laporan_tahunan);
+        laporanButtons.add(button_laporan_1);
+        laporanButtons.add(button_laporan_2);
+        laporanButtons.add(button_laporan_3);
+        laporanButtons.add(button_laporan_4);
+        laporanButtons.add(button_laporan_5);
 
         tableViews = new ArrayList<>();
         tableViews.add(table_anak);
@@ -303,6 +328,19 @@ public class DataAnakSMController {
                 kehadiranSelected = newValue;
             }
         });
+
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT DATE_PART('year', tanggal_kebaktian) AS tahun_kebaktian
+                FROM kebaktian
+                GROUP BY DATE_PART('year', tanggal_kebaktian)
+                ORDER BY tahun_kebaktian""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        combo_box_tahun_ajaran.getItems().add("Year");
+        while (rs.next()) {
+            combo_box_tahun_ajaran.getItems().add(String.valueOf(rs.getInt("tahun_kebaktian")));
+        }
     }
 
     public void handleButtonDashboardClick(ActionEvent event) throws SQLException {

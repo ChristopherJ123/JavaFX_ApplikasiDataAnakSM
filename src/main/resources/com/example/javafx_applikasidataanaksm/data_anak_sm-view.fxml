@@ -42,53 +42,78 @@
                      </font>
                   </Button>
                   <ComboBox fx:id="combo_box_tahun_ajaran" layoutX="22.0" layoutY="182.0" prefWidth="150.0" promptText="Tahun Ajaran" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" />
-                  <Button fx:id="button_anak" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE">
+                  <Button fx:id="button_anak" layoutX="16.0" layoutY="250.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Anak" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_guru" layoutX="16.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE">
+                  <Button fx:id="button_guru" layoutX="16.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE">
+                  <Button fx:id="button_kelas" layoutX="16.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE">
+                  <Button fx:id="button_kehadiran" layoutX="16.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE">
+                  <Button fx:id="button_kebaktian" layoutX="16.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kebaktian" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleButtonLaporanClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE">
+                  <Button fx:id="button_kelas_anak" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas Anak" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE" visible="false">
+                  <Button fx:id="button_guru_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru Kelas" textFill="WHITE" visible="false">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="370.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="52.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE" visible="false">
+                  <Button fx:id="button_laporan" layoutX="16.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleButtonLaporanClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan" textFill="WHITE" visible="false">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_mingguan" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Mingguan" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_tahunan" layoutX="16.0" layoutY="350.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Laporan Tahunan" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
                   <ComboBox fx:id="combo_box_kelas" layoutX="22.0" layoutY="250.0" prefWidth="150.0" promptText="Kelas" styleClass="button_tahun" stylesheets="@../assets/css/styles.css" visible="false" />
-                  <Button fx:id="button_kelas_anak" layoutX="16.0" layoutY="300.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kelas Anak" textFill="WHITE">
+                  <Button fx:id="button_laporan_1" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran Terbanyak" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="button_guru_kelas" layoutX="16.0" layoutY="400.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Guru Kelas" textFill="WHITE">
+                  <Button fx:id="button_laporan_2" layoutX="16.0" layoutY="450.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran Tersedikit" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_3" layoutX="16.0" layoutY="500.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Jumlah anak per kelas" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_4" layoutX="16.0" layoutY="550.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran per bulan" textFill="WHITE">
+                     <font>
+                        <Font name="Segoe UI Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="button_laporan_5" layoutX="16.0" layoutY="600.0" mnemonicParsing="false" onAction="#handleButtonMenuClick" prefHeight="42.0" prefWidth="160.0" styleClass="button_regular" stylesheets="@../assets/css/styles.css" text="Kehadiran per L/K" textFill="WHITE">
                      <font>
                         <Font name="Segoe UI Bold" size="13.0" />
                      </font>
