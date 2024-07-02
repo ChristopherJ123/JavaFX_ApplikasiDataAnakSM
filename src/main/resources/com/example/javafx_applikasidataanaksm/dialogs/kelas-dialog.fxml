@@ -2,24 +2,26 @@
 
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="660.0" styleClass="blank_space" stylesheets="@../../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.controllers.KelasDialogController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="250.0" prefWidth="660.0" styleClass="window_space" stylesheets="@../../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.controllers.KelasDialogController">
    <children>
       <VBox prefHeight="600.0" prefWidth="700.0">
          <children>
-            <AnchorPane prefHeight="670.0" prefWidth="670.0" styleClass="blank_space">
+            <AnchorPane prefHeight="670.0" prefWidth="670.0">
                <children>
-                  <Label fx:id="text_lable" layoutX="43.0" layoutY="30.0" prefHeight="42.0" prefWidth="400.0" text="Data Kelas">
-                     <font>
-                        <Font name="Century Gothic Bold" size="32.0" />
-                     </font>
-                  </Label>
-                  <Pane fx:id="add" layoutX="520.0" layoutY="170.0" onMouseClicked="#handleAdd" prefHeight="36.0" prefWidth="80.0" styleClass="add">
+                  <ImageView fitHeight="110.0" fitWidth="660.0" layoutY="140.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/images/addKelasPage.png" />
+                     </image>
+                  </ImageView>
+                  <Pane fx:id="add" layoutX="531.0" layoutY="177.0" onMouseClicked="#handleAdd" prefHeight="36.0" prefWidth="80.0" styleClass="add">
                      <children>
                         <Label fx:id="submitButt" layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
                            <font>
@@ -28,16 +30,16 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Label layoutX="45.0" layoutY="90.0" prefWidth="250.0" text="Nama Kelas">
-                     <font>
-                        <Font name="Century Gothic" size="24.0" />
-                     </font>
-                  </Label>
-                  <TextField fx:id="field_nama_kelas" layoutX="300.0" layoutY="90.0" prefHeight="31.0" prefWidth="300.0" promptText="cth: Betania">
-                     <font>
-                        <Font name="Century Gothic" size="13.0" />
-                     </font>
-                  </TextField>
+                  <Pane layoutX="2.0" layoutY="37.0" prefHeight="56.0" prefWidth="660.0">
+                     <children>
+                        <Label alignment="CENTER_RIGHT" layoutX="176.0" layoutY="13.0" prefHeight="41.0" prefWidth="108.0" text="Nama" textAlignment="RIGHT">
+                           <font>
+                              <Font name="Century Gothic Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="field_nama_kelas" layoutX="302.0" layoutY="13.0" prefHeight="41.0" prefWidth="307.0" promptText="contoh: Betania" styleClass="window-button" />
+                     </children>
+                  </Pane>
                </children>
             </AnchorPane>
          </children>
