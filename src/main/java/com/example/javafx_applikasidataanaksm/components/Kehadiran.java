@@ -36,6 +36,7 @@ public class Kehadiran {
     public int getStatus_kehadiran() {
         return status_kehadiran;
     }
+
     public boolean getStatus(){
         return status_kehadiran == 1;
     }

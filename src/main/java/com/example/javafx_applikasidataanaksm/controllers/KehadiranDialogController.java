@@ -90,7 +90,7 @@ public class KehadiranDialogController {
             st = con.prepareStatement(query);
             st.setInt(1, Integer.parseInt(field_id_anak.getValue().split(" ")[0]));
             st.setInt(2, Integer.parseInt(field_id_kebaktian.getValue().split(" ")[0]));
-            st.setString(3, getStatus());
+            st.setInt(3, getStatus());
             st.setInt(4, kehadiranIDToUpdate);
             st.execute();
         } else {
@@ -103,7 +103,7 @@ public class KehadiranDialogController {
             st = con.prepareStatement(query);
             st.setInt(1, Integer.parseInt(field_id_anak.getValue().split(" ")[0]));
             st.setInt(2, Integer.parseInt(field_id_kebaktian.getValue().split(" ")[0]));
-            st.setString(3, getStatus());
+            st.setInt(3, getStatus());
             st.execute();
         }
         add.getScene().getWindow().hide();
@@ -136,8 +136,8 @@ public class KehadiranDialogController {
         this.kehadiranIDToUpdate = kehadiranIDToUpdate;
     }
 
-    public String getStatus() {
-        return status.getSelectedToggle() == field_hadir ? "1" : "0";
+    public Integer getStatus() {
+        return status.getSelectedToggle() == field_hadir ? 1 : 0;
     }
 
     public ComboBox<String> getField_id_anak() {

@@ -1052,12 +1052,12 @@ public class DataAnakSMController {
         ObservableList<Kehadiran> listKehadiran = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-            SELECT kh.*, a.nama_anak, k.nama_kebaktian, k.tanggal_kebaktian, s.deskripsi 
-            FROM kehadiran kh 
-            JOIN anak a ON kh.id_anak = a.id_anak 
+            SELECT kh.*, a.nama_anak, k.nama_kebaktian, k.tanggal_kebaktian, s.deskripsi
+            FROM kehadiran kh
+            JOIN anak a ON kh.id_anak = a.id_anak
             JOIN kebaktian k ON kh.id_kebaktian = k.id_kebaktian
             JOIN status s ON kh.status_kehadiran = s.status_kehadiran
-    """;
+            """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
