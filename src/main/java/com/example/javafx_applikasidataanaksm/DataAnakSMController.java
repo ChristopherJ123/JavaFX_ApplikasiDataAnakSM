@@ -384,7 +384,7 @@ public class DataAnakSMController {
         for (Pane pane : CRUDPanes) {
             pane.setVisible(false);
         }
-        combo_box_kelas.setVisible(true);
+        combo_box_kelas.setVisible(false);
         text_area_laporan.setVisible(true);
         updateTableViewVisibility();
     }
@@ -815,7 +815,7 @@ public class DataAnakSMController {
         }
         con = DBConnection.getConnection();
         String query2 = """
-                SELECT a.id_anak, a.nama_anak, COUNT(*) AS total_kehadiran\s
+                SELECT a.id_anak, a.nama_anak, COUNT(*) AS total_kehadirans
                 FROM kehadiran kh
                 JOIN anak a
                 ON a.id_anak = kh.id_anak
@@ -823,12 +823,20 @@ public class DataAnakSMController {
                 ON ka.id_anak = a.id_anak
                 JOIN kelas k
                 ON k.id_kelas = ka.id_kelas
-                WHERE kh.status_kehadiran = 1 AND k.id_kelas = ?
-                GROUP BY a.id_anak
-                """;
+                JOIN kebaktian ke
+                ON ke.id_kebaktian = kh.id_kebaktian
+                WHERE kh.status_kehadiran = 1 AND k.id_kelas = ? AND EXTRACT (YEAR FROM ke.tanggal_kebaktian) >= ? AND EXTRACT (YEAR FROM ke.tanggal_kebaktian) < ?
+                GROUP BY a.id_anak""";
         for (int i = 1; i <= kelasList.size(); i++) {
             st = con.prepareStatement(query2);
             st.setInt(1, i);
+            try {
+                st.setInt(2, Integer.parseInt(combo_box_tahun_ajaran.getValue()));
+                st.setInt(3, Integer.parseInt(combo_box_tahun_ajaran.getValue()+1));
+            } catch (Exception e) {
+                st.setInt(2, 0);
+                st.setInt(3, 9999);
+            }
             rs = st.executeQuery();
             text_area_laporan.setText(text_area_laporan.getText() +
                     kelasList.get(i) + "\n" + """
