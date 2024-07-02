@@ -488,11 +488,11 @@ public class DataAnakSMController {
                 if (kelasAnakSelected != null) {
                     KelasAnakDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setAnakIDToUpdate(kelasAnakSelected.getIdAnak());
-                    controller.setKelasIDToUpdate(kelasAnakSelected.getIdKelas());
+                    controller.setAnakIDToUpdate(kelasAnakSelected.getId_anak());
+                    controller.setKelasIDToUpdate(kelasAnakSelected.getId_kelas());
                     controller.setUpdate(true);
-                    controller.setField_id_anak(kelasAnakSelected.getIdAnak());
-                    controller.setField_id_kelas(kelasAnakSelected.getIdKelas());
+                    controller.setField_id_anak(kelasAnakSelected.getId_anak());
+                    controller.setField_id_kelas(kelasAnakSelected.getId_kelas());
                 }
             }
             case "button_kehadiran" -> {
@@ -565,8 +565,8 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM kelas_anak WHERE id_kelas = ? AND id_anak = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, kelasAnakSelected.getIdKelas());
-                    st.setInt(2, kelasAnakSelected.getIdAnak());
+                    st.setInt(1, kelasAnakSelected.getId_kelas());
+                    st.setInt(2, kelasAnakSelected.getId_anak());
                     st.execute();
                 }
             }
@@ -633,6 +633,26 @@ public class DataAnakSMController {
                 text_lable.setText("Laporan Tahunan");
                 viewLaporanTahunan();
             }
+            case "button_laporan_1" -> {
+                text_lable.setText("Laporan 1");
+                viewLaporan1();
+            }
+            case "button_laporan_2" -> {
+                text_lable.setText("Laporan 2");
+                viewLaporan2();
+            }
+            case "button_laporan_3" -> {
+                text_lable.setText("Laporan 3");
+                viewLaporan3();
+            }
+            case "button_laporan_4" -> {
+                text_lable.setText("Laporan 4");
+                viewLaporan4();
+            }
+            case "button_laporan_5" -> {
+                text_lable.setText("Laporan 5");
+                viewLaporan5();
+            }
         }
         updateTable(buttonId);
     }
@@ -648,6 +668,11 @@ public class DataAnakSMController {
         button_laporan.setStyle("-fx-background-color: #2C3C5C;");
         button_laporan_mingguan.setStyle("-fx-background-color: #2C3C5C;");
         button_laporan_tahunan.setStyle("-fx-background-color: #2C3C5C;");
+        button_laporan_1.setStyle("-fx-background-color: #2C3C5C;");
+        button_laporan_2.setStyle("-fx-background-color: #2C3C5C;");
+        button_laporan_3.setStyle("-fx-background-color: #2C3C5C;");
+        button_laporan_4.setStyle("-fx-background-color: #2C3C5C;");
+        button_laporan_5.setStyle("-fx-background-color: #2C3C5C;");
     }
 
     private void setButtonHoverEffect(Button button) {
@@ -810,6 +835,112 @@ public class DataAnakSMController {
         }
     }
 
+    public void viewLaporan1() throws SQLException {
+        String out = "";
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT a.nama_anak, COUNT(k.id_kehadiran) AS jumlah_kehadiran
+                FROM kehadiran k
+                JOIN anak a ON k.id_anak = a.id_anak
+                WHERE k.status_kehadiran = 1
+                GROUP BY a.nama_anak
+                ORDER BY jumlah_kehadiran DESC
+                LIMIT 5;""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        out += ("Top 5 anak yang paling sering hadir dalam kebaktian");
+        out += ("\nNama Anak\t\tJumlah Kehadiran");
+        while (rs.next()) {
+            out += ("\n" + rs.getString(1) + "\t\t" + rs.getInt(2));
+        }
+        text_area_laporan.setText(out);
+    }
+
+    public void viewLaporan2() throws SQLException {
+        String out = "";
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT a.nama_anak, COUNT(k.id_kehadiran) AS jumlah_tidak_hadir
+                FROM kehadiran k
+                JOIN anak a ON k.id_anak = a.id_anak
+                WHERE k.status_kehadiran = 0
+                GROUP BY a.nama_anak
+                ORDER BY jumlah_tidak_hadir DESC
+                LIMIT 5;""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        out += ("Top 5 anak yang paling sering tidak hadir dalam kebaktian");
+        out += ("\nNama Anak\t\tJumlah Tidak Kehadiran");
+        while (rs.next()) {
+            out += ("\n" + rs.getString(1) + "\t\t" + rs.getInt(2));
+        }
+        text_area_laporan.setText(out);
+    }
+
+    public void viewLaporan3() throws SQLException {
+        String out = "";
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT c.nama_kelas, COUNT(d.id_anak) AS jumlah_anak
+                FROM kelas_anak d
+                JOIN kelas c ON d.id_kelas = c.id_kelas
+                GROUP BY c.nama_kelas
+                ORDER BY jumlah_anak DESC;""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        out += ("Laporan Jumlah Anak Berdasarkan Kelas");
+        out += ("\nNama Kelas\t\tJumlah Anak");
+        while (rs.next()) {
+            out += ("\n" + rs.getString(1) + "\t\t" + rs.getInt(2));
+        }
+        text_area_laporan.setText(out);
+    }
+
+    public void viewLaporan4() throws SQLException {
+        String out = "";
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT\s
+                    EXTRACT(YEAR FROM k.tanggal_kebaktian) AS tahun,
+                    TO_CHAR(k.tanggal_kebaktian, 'Month') AS bulan,
+                    COUNT(ke.id_kehadiran) AS jumlah_kehadiran
+                FROM kehadiran ke
+                JOIN kebaktian k ON ke.id_kebaktian = k.id_kebaktian
+                WHERE ke.status_kehadiran = 1
+                GROUP BY tahun, bulan
+                ORDER BY tahun, bulan;""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        out += ("Laporan Kehadiran Kebaktian per Bulan");
+        out += ("\nTahun\t\tBulan\t\tJumlah Kehadiran");
+        while (rs.next()) {
+            out += ("\n" + rs.getString(1) + "\t\t" + rs.getString(2) + "\t\t" + rs.getInt(3));
+        }
+        text_area_laporan.setText(out);
+    }
+
+    public void viewLaporan5() throws SQLException {
+        String out = "";
+        con = DBConnection.getConnection();
+        String query = """
+                SELECT\s
+                                          a.gender,
+                                          COUNT(k.id_kehadiran) AS jumlah_kehadiran
+                                      FROM kehadiran k
+                                      JOIN anak a ON k.id_anak = a.id_anak
+                                      WHERE k.status_kehadiran = 1
+                                      GROUP BY a.gender
+                                      ORDER BY jumlah_kehadiran DESC;""";
+        st = con.prepareStatement(query);
+        rs = st.executeQuery();
+        out += ("Laporan Kehadiran Anak Berdasarkan Jenis Kelamin");
+        out += ("\nGender\t\tJumlah Kehadiran");
+        while (rs.next()) {
+            out += ("\n" + rs.getString(1) + "\t\t" + rs.getInt(2));
+        }
+        text_area_laporan.setText(out);
+    }
+
     public ObservableList<Anak> getAnak() throws SQLException {
         ObservableList<Anak> listAnak = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
@@ -832,16 +963,16 @@ public class DataAnakSMController {
         ObservableList<KelasAnak> listKelasAnak = FXCollections.observableArrayList();
         con = DBConnection.getConnection();
         String query = """
-            SELECT ka.*, a.nama_anak, k.nama_kelas 
-            FROM kelas_anak ka 
-            JOIN anak a ON ka.id_anak = a.id_anak 
+            SELECT ka.created_at, ka.id_anak, ka.id_kelas, a.nama_anak, k.nama_kelas
+            FROM kelas_anak ka
+            JOIN anak a ON ka.id_anak = a.id_anak
             JOIN kelas k ON ka.id_kelas = k.id_kelas
     """;
         st = con.prepareStatement(query);
         rs = st.executeQuery();
         while (rs.next()) {
-            KelasAnak kelasAnak = new KelasAnak(rs.getInt("id_anak"), rs.getInt("id_kelas"),
-                    rs.getDate("created_at"), rs.getString("nama_anak"), rs.getString("nama_kelas"));
+            KelasAnak kelasAnak = new KelasAnak(rs.getInt(2), rs.getInt(3),
+                    rs.getDate(1), rs.getString(4), rs.getString(5));
             listKelasAnak.add(kelasAnak);
         }
         return listKelasAnak;

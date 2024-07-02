@@ -3,58 +3,58 @@ package com.example.javafx_applikasidataanaksm.components;
 import java.sql.Date;
 
 public class KelasAnak {
-    private int idAnak;
-    private int idKelas;
-    private Date createdAt;
-    private String namaAnak;
-    private String namaKelas;
+    private int id_anak;
+    private int id_kelas;
+    private Date created_at;
+    private String nama_anak;
+    private String nama_kelas;
 
     public KelasAnak(int idAnak, int idKelas, Date createdAt, String namaAnak, String namaKelas) {
-        this.idAnak = idAnak;
-        this.idKelas = idKelas;
-        this.createdAt = createdAt;
-        this.namaAnak = namaAnak;
-        this.namaKelas = namaKelas;
+        this.id_anak = idAnak;
+        this.id_kelas = idKelas;
+        this.created_at = createdAt;
+        this.nama_anak = namaAnak;
+        this.nama_kelas = namaKelas;
     }
 
-    public int getIdAnak() {
-        return idAnak;
+    public int getId_anak() {
+        return id_anak;
     }
 
-    public void setIdAnak(int idAnak) {
-        this.idAnak = idAnak;
+    public void setId_anak(int id_anak) {
+        this.id_anak = id_anak;
     }
 
-    public int getIdKelas() {
-        return idKelas;
+    public int getId_kelas() {
+        return id_kelas;
     }
 
-    public void setIdKelas(int idKelas) {
-        this.idKelas = idKelas;
+    public void setId_kelas(int id_kelas) {
+        this.id_kelas = id_kelas;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
+    public Date getCreated_at() {
+        return created_at;
     }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
+    public void setCreated_at(Date created_at) {
+        this.created_at = created_at;
     }
 
-    public String getNamaAnak() {
-        return namaAnak;
+    public String getNama_anak() {
+        return nama_anak;
     }
 
-    public void setNamaAnak(String namaAnak) {
-        this.namaAnak = namaAnak;
+    public void setNama_anak(String nama_anak) {
+        this.nama_anak = nama_anak;
     }
 
-    public String getNamaKelas() {
-        return namaKelas;
+    public String getNama_kelas() {
+        return nama_kelas;
     }
 
-    public void setNamaKelas(String namaKelas) {
-        this.namaKelas = namaKelas;
+    public void setNama_kelas(String nama_kelas) {
+        this.nama_kelas = nama_kelas;
     }
 }
 
