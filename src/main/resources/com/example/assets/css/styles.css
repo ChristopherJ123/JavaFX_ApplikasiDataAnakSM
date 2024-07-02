@@ -139,10 +139,19 @@
 }
 
 /* Additional styles for login and register */
-.text-field {
+.username-field {
     -fx-font-size: 14px;
-    -fx-background-radius: 10px;
-    -fx-padding: 10px;
+        -fx-background-color: #25324C;
+    	-fx-border-width: 0px;
+    	-fx-border-radius: 0 20px 20px 0;
+    	-fx-background-radius: 0 20px 20px 0;
+    	-fx-border-style: solid;
+}
+.username-field .list-cell {
+	-fx-text-fill: #737E94;
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
 }
 
 .password-field {
@@ -151,16 +160,15 @@
     -fx-padding: 10px;
 }
 
-.button {
-    -fx-background-radius: 20px;
-    -fx-padding: 10px;
-    -fx-border-width: 2px;
-    -fx-border-style: solid;
-}
-
 .button_register {
-    -fx-background-color: #2196F3;
-    -fx-text-fill: white;
+    -fx-font-size: 10px;
+            -fx-background-color: #2A3957;
+        	-fx-border-width: 0px;
+        	-fx-border-radius: 0 20px 20px 0;
+        	-fx-background-radius: 0 20px 20px 0;
+        	-fx-border-style: solid;
+        	-fx-underline-true;
+        	-fx-text-fill: white;
 }
 
 .button_add {
