@@ -58,6 +58,10 @@
     -fx-background-color: #E0E3E9;
 }
 
+.window_space {
+    -fx-background-color: #F3B705;
+}
+
 /* General TableView styling */
 .table-view {
     -fx-background-color: white;
@@ -155,6 +159,21 @@
     -fx-font-weight: bold;
 }
 
+.window-button {
+        -fx-background-color: #FFFEFA;
+    	-fx-border-width: 0px;
+    	-fx-border-radius: 0 20px 20px 0;
+    	-fx-background-radius: 0 20px 20px 0;
+    	-fx-border-style: solid;
+    -fx-text-fill: #372B09
+}
+.window-button .list-cell {
+	-fx-text-fill: #EDD89F
+    -fx-font-family: "Segoe UI";
+    -fx-font-size: 10px;
+    -fx-font-weight: bold;
+}
+
 .password-field {
     -fx-font-size: 14px;
     -fx-background-radius: 10px;
@@ -174,7 +193,6 @@
         	-fx-border-radius: 0 20px 20px 0;
         	-fx-background-radius: 0 20px 20px 0;
         	-fx-border-style: solid;
-        	-fx-underline-true;
         	-fx-text-fill: white;
 }
 
