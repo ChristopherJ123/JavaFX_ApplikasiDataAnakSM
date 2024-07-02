@@ -72,6 +72,10 @@ public class AnakDialogController {
         add.getScene().getWindow().hide();
     }
 
+    public AnakDialogController getController() {
+        return this;
+    }
+
     public String getGender() {
         return gender.getSelectedToggle() == field_gender_laki_laki ? "Laki-laki" : "Perempuan";
     }
