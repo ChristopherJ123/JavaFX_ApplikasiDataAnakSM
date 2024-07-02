@@ -75,7 +75,7 @@ public class KelasAnakDialogController {
             // CRUD UPDATE
             con = DBConnection.getConnection();
             String query = """
-                UPDATE detail_kelas
+                UPDATE kelas_anak
                 SET id_anak = ?, id_kelas = ?
                 WHERE id_anak = ? AND id_kelas = ?
                 """;
@@ -89,7 +89,7 @@ public class KelasAnakDialogController {
             // CRUD INSERT
             con = DBConnection.getConnection();
             String query = """
-                INSERT INTO detail_kelas (id_anak, id_kelas)
+                INSERT INTO kelas_anak (id_anak, id_kelas)
                 VALUES(?, ?)
                 """;
             st = con.prepareStatement(query);
