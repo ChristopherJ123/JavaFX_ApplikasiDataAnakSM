@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" stylesheets="@../../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="680.0" prefWidth="900.0" stylesheets="@../../assets/css/styles.css" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.javafx_applikasidataanaksm.controllers.users.RegisterController">
    <children>
       <AnchorPane prefHeight="680.0" prefWidth="900.0">
          <children>
@@ -38,12 +38,12 @@
                               <Font name="System Bold" size="12.0" />
                            </font>
                         </PasswordField>
-                        <Button fx:id="login" layoutX="157.0" layoutY="196.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="67.0" styleClass="button_regular" text="Sign Up" textFill="WHITE">
+                        <Button fx:id="login" layoutX="157.0" layoutY="196.0" mnemonicParsing="false" onAction="#handleRegister" prefHeight="42.0" prefWidth="67.0" styleClass="button_regular" text="Sign Up" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="12.0" />
                            </font>
                         </Button>
-                        <Button fx:id="signUp" layoutY="3.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="67.0" styleClass="button_register" text="Log In" textAlignment="CENTER" textFill="WHITE">
+                        <Button fx:id="signUp" layoutY="3.0" mnemonicParsing="false" onAction="#handleBackToLogin" prefHeight="22.0" prefWidth="67.0" styleClass="button_register" text="Log In" textAlignment="CENTER" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold Italic" size="10.0" />
                            </font>
