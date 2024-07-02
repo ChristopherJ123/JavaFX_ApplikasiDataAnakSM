@@ -468,11 +468,11 @@ public class DataAnakSMController {
                 if (guruKelasSelected != null) {
                     GuruKelasDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setKelasIDToUpdate(guruKelasSelected.getIdKelas());
-                    controller.setGuruIDToUpdate(guruKelasSelected.getIdGuru());
+                    controller.setKelasIDToUpdate(guruKelasSelected.getId_kelas());
+                    controller.setGuruIDToUpdate(guruKelasSelected.getId_guru());
                     controller.setUpdate(true);
-                    controller.setField_id_guru(guruKelasSelected.getIdGuru());
-                    controller.setField_id_kelas(guruKelasSelected.getIdKelas());
+                    controller.setField_id_guru(guruKelasSelected.getId_guru());
+                    controller.setField_id_kelas(guruKelasSelected.getId_kelas());
                 }
             }
             case "button_kelas" -> {
@@ -499,10 +499,10 @@ public class DataAnakSMController {
                 if (kehadiranSelected != null) {
                     KehadiranDialogController controller = loader.getController();
                     controller.setController(this);
-                    controller.setKehadiranIDToUpdate(kehadiranSelected.getIdKehadiran());
+                    controller.setKehadiranIDToUpdate(kehadiranSelected.getId_kehadiran());
                     controller.setUpdate(true);
-                    controller.setField_id_anak(kehadiranSelected.getIdAnak());
-                    controller.setField_id_kebaktian(kehadiranSelected.getIdKebaktian());
+                    controller.setField_id_anak(kehadiranSelected.getId_anak());
+                    controller.setField_id_kebaktian(kehadiranSelected.getId_kebaktian());
                     controller.setField_hadir(kehadiranSelected.getStatus());
                 }
             }
@@ -546,8 +546,8 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM guru_kelas WHERE id_guru = ? AND id_kelas = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, guruKelasSelected.getIdGuru());
-                    st.setInt(2, guruKelasSelected.getIdKelas());
+                    st.setInt(1, guruKelasSelected.getId_guru());
+                    st.setInt(2, guruKelasSelected.getId_kelas());
                     st.execute();
                 }
             }
@@ -575,7 +575,7 @@ public class DataAnakSMController {
                     con = DBConnection.getConnection();
                     String query = "DELETE FROM kehadiran WHERE id_kehadiran = ?";
                     st = con.prepareStatement(query);
-                    st.setInt(1, kehadiranSelected.getIdKehadiran());
+                    st.setInt(1, kehadiranSelected.getId_kehadiran());
                     st.execute();
                 }
             }
@@ -714,6 +714,9 @@ public class DataAnakSMController {
                 table_guru_kelas_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
                 table_guru_kelas_id_guru.setCellValueFactory(new PropertyValueFactory<>("id_guru"));
                 table_guru_kelas_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+                table_guru_kelas_nama_guru.setCellValueFactory(new PropertyValueFactory<>("nama_guru"));
+                table_guru_kelas_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
+
             }
             case "button_kelas" -> {
                 ObservableList<Kelas> list = getKelas();
@@ -727,6 +730,8 @@ public class DataAnakSMController {
                 table_kelas_anak_created_at.setCellValueFactory(new PropertyValueFactory<>("created_at"));
                 table_kelas_anak_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
                 table_kelas_anak_id_kelas.setCellValueFactory(new PropertyValueFactory<>("id_kelas"));
+                table_kelas_anak_nama_anak.setCellValueFactory(new PropertyValueFactory<>("nama_anak"));
+                table_kelas_anak_nama_kelas.setCellValueFactory(new PropertyValueFactory<>("nama_kelas"));
             }
             case "button_kehadiran" -> {
                 ObservableList<Kehadiran> list = getKehadiran();
@@ -734,7 +739,11 @@ public class DataAnakSMController {
                 table_kehadiran_id_kehadiran.setCellValueFactory(new PropertyValueFactory<>("id_kehadiran"));
                 table_kehadiran_id_anak.setCellValueFactory(new PropertyValueFactory<>("id_anak"));
                 table_kehadiran_id_kebaktian.setCellValueFactory(new PropertyValueFactory<>("id_kebaktian"));
-                table_kehadiran_status.setCellValueFactory(new PropertyValueFactory<>("status_kehadiran"));
+                table_kehadiran_status.setCellValueFactory(new PropertyValueFactory<>("deskripsi"));
+                table_kehadiran_nama_anak.setCellValueFactory(new PropertyValueFactory<>("nama_anak"));
+                table_kehadiran_nama_kebaktian.setCellValueFactory(new PropertyValueFactory<>("nama_kebaktian"));
+                table_kehadiran_tanggal_kebaktian.setCellValueFactory(new PropertyValueFactory<>("tanggal_kebaktian"));
+
             }
             case "button_kebaktian" -> {
                 ObservableList<Kebaktian> list = getKebaktian();

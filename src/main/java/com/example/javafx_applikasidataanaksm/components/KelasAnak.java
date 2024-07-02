@@ -9,12 +9,12 @@ public class KelasAnak {
     private String nama_anak;
     private String nama_kelas;
 
-    public KelasAnak(int idAnak, int idKelas, Date createdAt, String namaAnak, String namaKelas) {
-        this.id_anak = idAnak;
+    public KelasAnak(int id_anak, int idKelas, Date created_at, String nama_anak, String nama_kelas) {
+        this.id_anak = id_anak;
         this.id_kelas = idKelas;
-        this.created_at = createdAt;
-        this.nama_anak = namaAnak;
-        this.nama_kelas = namaKelas;
+        this.created_at = created_at;
+        this.nama_anak = nama_anak;
+        this.nama_kelas = nama_kelas;
     }
 
     public int getId_anak() {
