@@ -21,7 +21,7 @@
                   </Label>
                   <Pane fx:id="add" layoutX="520.0" layoutY="240.0" onMouseClicked="#handleAdd" prefHeight="36.0" prefWidth="80.0" styleClass="add">
                      <children>
-                        <Label layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
+                        <Label fx:id="submitButt" layoutX="26.0" layoutY="10.0" text="Add" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="13.0" />
                            </font>

@@ -176,18 +176,18 @@
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="remove" layoutX="241.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="remove">
+                  <Pane fx:id="remove" layoutX="241.0" layoutY="550.0" onMouseClicked="#handleDeleteButtonClick" prefHeight="36.0" prefWidth="79.0" styleClass="remove">
                      <children>
-                        <Label layoutX="15.0" layoutY="11.0" onMouseClicked="#handleRemoveButtonClick" text="Remove" textFill="WHITE">
+                        <Label layoutX="15.0" layoutY="11.0" text="Remove" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="12.0" />
                            </font>
                         </Label>
                      </children>
                   </Pane>
-                  <Pane fx:id="edit" layoutX="142.0" layoutY="550.0" prefHeight="36.0" prefWidth="79.0" styleClass="edit">
+                  <Pane fx:id="edit" layoutX="142.0" layoutY="550.0" onMouseClicked="#handleEditButtonClick" prefHeight="36.0" prefWidth="79.0" styleClass="edit">
                      <children>
-                        <Label layoutX="29.0" layoutY="11.0" onMouseClicked="#handleEditButtonClick" text="Edit" textFill="WHITE">
+                        <Label layoutX="29.0" layoutY="11.0" text="Edit" textFill="WHITE">
                            <font>
                               <Font name="Century Gothic Bold" size="13.0" />
                            </font>

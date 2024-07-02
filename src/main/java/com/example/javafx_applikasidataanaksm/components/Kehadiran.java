@@ -25,6 +25,10 @@ public class Kehadiran {
         return status_kehadiran;
     }
 
+    public boolean getStatus() {
+        return status_kehadiran == 1;
+    }
+
     public void setStatus_kehadiran(Integer status_kehadiran) {
         this.status_kehadiran = status_kehadiran;
     }

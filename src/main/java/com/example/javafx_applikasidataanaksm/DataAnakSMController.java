@@ -1,6 +1,7 @@
 package com.example.javafx_applikasidataanaksm;
 
 import com.example.javafx_applikasidataanaksm.components.*;
+import com.example.javafx_applikasidataanaksm.controllers.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -193,13 +194,19 @@ public class DataAnakSMController {
     @FXML
     private TableColumn<Kebaktian, String> table_kebaktian_nama_kebaktian;
 
+    private Anak anakSelected;
+    private Guru guruSelected;
+    private GuruKelas guruKelasSelected;
+    private Kebaktian kebaktianSelected;
+    private Kehadiran kehadiranSelected;
+    private Kelas kelasSelected;
+    private KelasAnak kelasAnakSelected;
+
     private List<Button> menuButtons;
     private List<Button> laporanButtons;
     private List<TableView<?>> tableViews;
     private List<Pane> CRUDPanes;
     private String buttonId;
-    private Integer selectedParam1;
-    private Integer selectedParam2;
 
     private Connection con;
     private PreparedStatement st;
@@ -263,39 +270,37 @@ public class DataAnakSMController {
 
         table_anak.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_anak();
+                anakSelected = newValue;
             }
         });
         table_guru.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_guru();
+                guruSelected = newValue;
             }
         });
         table_guru_kelas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_guru();
-                selectedParam2 = newValue.getId_kelas();
+                guruKelasSelected = newValue;
             }
         });
         table_kelas.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_kelas();
+                kelasSelected = newValue;
             }
         });
         table_kelas_anak.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_anak();
-                selectedParam2 = newValue.getId_kelas();
+                kelasAnakSelected = newValue;
             }
         });
         table_kebaktian.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_kebaktian();
+                kebaktianSelected = newValue;
             }
         });
         table_kehadiran.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             if (newValue != null) {
-                selectedParam1 = newValue.getId_kehadiran();
+                kehadiranSelected = newValue;
             }
         });
     }
@@ -347,27 +352,220 @@ public class DataAnakSMController {
     }
 
     public void handleAddButtonClick(MouseEvent event) throws IOException, SQLException {
-        FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
-        Scene scene = new Scene(appLoader.load());
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
+        Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
         stage.setTitle("Input " + buttonId.replace('_', ' '));
         stage.setScene(scene);
         stage.show();
+        switch (buttonId) {
+            case "button_anak" -> {
+                if (anakSelected != null) {
+                    AnakDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_guru" -> {
+                if (guruSelected != null) {
+                    GuruDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_guru_kelas" -> {
+                if (guruKelasSelected != null) {
+                    GuruKelasDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_kelas" -> {
+                if (kelasSelected != null) {
+                    KelasDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_kelas_anak" -> {
+                if (kelasAnakSelected != null) {
+                    KelasAnakDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_kehadiran" -> {
+                if (kehadiranSelected != null) {
+                    KehadiranDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+            case "button_kebaktian" -> {
+                if (kebaktianSelected != null) {
+                    KebaktianDialogController controller = loader.getController();
+                    controller.setController(this);
+                }
+            }
+        }
         updateTable(buttonId);
     }
 
     public void handleEditButtonClick(MouseEvent event) throws IOException, SQLException {
-        FXMLLoader appLoader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
-        Scene scene = new Scene(appLoader.load());
+        FXMLLoader loader = new FXMLLoader(this.getClass().getResource("dialogs/" + buttonId.replace("button_", "") + "-dialog.fxml"));
+        Scene scene = new Scene(loader.load());
         Stage stage = new Stage();
         stage.setTitle("Input " + buttonId.replace('_', ' '));
         stage.setScene(scene);
         stage.show();
+        switch (buttonId) {
+            case "button_anak" -> {
+                if (anakSelected != null) {
+                    AnakDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setAnakIDToUpdate(anakSelected.getId_anak());
+                    controller.setUpdate(true);
+                    controller.setField_nama_anak(anakSelected.getNama_anak());
+                    if (anakSelected.getGender().equals("Laki-laki")) controller.setField_gender_laki_laki();
+                    else controller.setField_gender_perempuan();
+                    controller.setField_tanggal_lahir(anakSelected.getTanggal_lahir());
+                    controller.setField_nama_orang_tua(anakSelected.getNama_orang_tua());
+                    controller.setField_no_telp_orang_tua(anakSelected.getNo_telp_orang_tua());
+                    controller.setField_alamat(anakSelected.getAlamat());
+                }
+            }
+            case "button_guru" -> {
+                if (guruSelected != null) {
+                    GuruDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setGuruIDToUpdate(guruSelected.getId_guru());
+                    controller.setUpdate(true);
+                    controller.setGuruIDToUpdate(guruSelected.getId_guru());
+                    controller.setField_nama_guru(guruSelected.getNama_guru());
+                    controller.setField_no_telp(guruSelected.getNo_telp_guru());
+                    controller.setField_alamat(guruSelected.getAlamat());
+                }
+            }
+            case "button_guru_kelas" -> {
+                if (guruKelasSelected != null) {
+                    GuruKelasDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setKelasIDToUpdate(guruKelasSelected.getId_kelas());
+                    controller.setGuruIDToUpdate(guruKelasSelected.getId_guru());
+                    controller.setUpdate(true);
+                    controller.setField_id_guru(guruKelasSelected.getId_guru());
+                    controller.setField_id_kelas(guruKelasSelected.getId_kelas());
+                }
+            }
+            case "button_kelas" -> {
+                if (kelasSelected != null) {
+                    KelasDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setKelasIDToUpdate(kelasSelected.getId_kelas());
+                    controller.setUpdate(true);
+                    controller.setField_nama_kelas(kelasSelected.getNama_kelas());
+                }
+            }
+            case "button_kelas_anak" -> {
+                if (kelasAnakSelected != null) {
+                    KelasAnakDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setAnakIDToUpdate(kelasAnakSelected.getId_anak());
+                    controller.setKelasIDToUpdate(kelasAnakSelected.getId_kelas());
+                    controller.setUpdate(true);
+                    controller.setField_id_anak(kelasAnakSelected.getId_anak());
+                    controller.setField_id_kelas(kelasAnakSelected.getId_kelas());
+                }
+            }
+            case "button_kehadiran" -> {
+                if (kehadiranSelected != null) {
+                    KehadiranDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setKehadiranIDToUpdate(kehadiranSelected.getId_kehadiran());
+                    controller.setUpdate(true);
+                    controller.setField_id_anak(kehadiranSelected.getId_anak());
+                    controller.setField_id_kebaktian(kehadiranSelected.getId_kebaktian());
+                    controller.setField_hadir(kehadiranSelected.getStatus());
+                }
+            }
+            case "button_kebaktian" -> {
+                if (kebaktianSelected != null) {
+                    KebaktianDialogController controller = loader.getController();
+                    controller.setController(this);
+                    controller.setKebaktianIDToUpdate(kebaktianSelected.getId_kebaktian());
+                    controller.setUpdate(true);
+                    controller.setKebaktianIDToUpdate(kebaktianSelected.getId_kebaktian());
+                    controller.setField_nama_kebaktian(kebaktianSelected.getNama_kebaktian());
+                    controller.setField_tanggal_kebaktian(kebaktianSelected.getTanggal_kebaktian());
+                }
+            }
+        }
         updateTable(buttonId);
     }
 
-    public void handleRemoveButtonClick(MouseEvent event) {
-
+    public void handleDeleteButtonClick(MouseEvent event) throws SQLException {
+        switch (buttonId) {
+            case "button_anak" -> {
+                if (anakSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM anak WHERE id_anak = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, anakSelected.getId_anak());
+                    st.execute();
+                }
+            }
+            case "button_guru" -> {
+                if (guruSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM guru WHERE id_guru = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, guruSelected.getId_guru());
+                    st.execute();
+                }
+            }
+            case "button_guru_kelas" -> {
+                if (guruKelasSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM guru_kelas WHERE id_guru = ? AND id_kelas = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, guruKelasSelected.getId_guru());
+                    st.setInt(2, guruKelasSelected.getId_kelas());
+                    st.execute();
+                }
+            }
+            case "button_kelas" -> {
+                if (kelasSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM kelas WHERE id_kelas = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, kelasSelected.getId_kelas());
+                    st.execute();
+                }
+            }
+            case "button_kelas_anak" -> {
+                if (kelasAnakSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM kelas_anak WHERE id_kelas = ? AND id_anak = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, kelasAnakSelected.getId_kelas());
+                    st.setInt(2, kelasAnakSelected.getId_anak());
+                    st.execute();
+                }
+            }
+            case "button_kehadiran" -> {
+                if (kehadiranSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM kehadiran WHERE id_kehadiran = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, kehadiranSelected.getId_kehadiran());
+                    st.execute();
+                }
+            }
+            case "button_kebaktian" -> {
+                if (kebaktianSelected != null) {
+                    con = DBConnection.getConnection();
+                    String query = "DELETE FROM kebaktian WHERE id_kebaktian = ?";
+                    st = con.prepareStatement(query);
+                    st.setInt(1, kebaktianSelected.getId_kebaktian());
+                    st.execute();
+                }
+            }
+        }
+        updateTable(buttonId);
     }
 
     private void updateTableViewVisibility() throws SQLException {
