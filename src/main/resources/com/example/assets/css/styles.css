@@ -137,3 +137,38 @@
 .remove:hover {
     -fx-background-color: #A63A3A;
 }
+
+/* Additional styles for login and register */
+.text-field {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.password-field {
+    -fx-font-size: 14px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+}
+
+.button {
+    -fx-background-radius: 20px;
+    -fx-padding: 10px;
+    -fx-border-width: 2px;
+    -fx-border-style: solid;
+}
+
+.button_register {
+    -fx-background-color: #2196F3;
+    -fx-text-fill: white;
+}
+
+.button_add {
+    -fx-background-color: #4CAF50;
+    -fx-text-fill: white;
+}
+
+.button_back {
+    -fx-background-color: #F44336;
+    -fx-text-fill: white;
+}
