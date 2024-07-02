@@ -3,85 +3,85 @@ package com.example.javafx_applikasidataanaksm.components;
 import java.util.Date;
 
 public class Kehadiran {
-    private int idKehadiran;
-    private int statusKehadiran;
-    private int idKebaktian;
-    private int idAnak;
-    private String namaAnak;
-    private String namaKebaktian;
-    private Date tanggalKebaktian;
+    private int id_kehadiran;
+    private int status_kehadiran;
+    private int id_kebaktian;
+    private int id_anak;
+    private String nama_anak;
+    private String nama_kebaktian;
+    private Date tanggal_kebaktian;
     private String deskripsi;
 
-    public Kehadiran(int idKehadiran, int statusKehadiran, int idKebaktian, int idAnak,
-                     String namaAnak, String namaKebaktian, Date tanggalKebaktian,
+    public Kehadiran(int id_kehadiran, int status_kehadiran, int id_kebaktian, int id_anak,
+                     String nama_anak, String nama_kebaktian, Date tanggal_kebaktian,
                      String deskripsi) {
-        this.idKehadiran = idKehadiran;
-        this.statusKehadiran = statusKehadiran;
-        this.idKebaktian = idKebaktian;
-        this.idAnak = idAnak;
-        this.namaAnak = namaAnak;
-        this.namaKebaktian = namaKebaktian;
-        this.tanggalKebaktian = tanggalKebaktian;
+        this.id_kehadiran = id_kehadiran;
+        this.status_kehadiran = status_kehadiran;
+        this.id_kebaktian = id_kebaktian;
+        this.id_anak = id_anak;
+        this.nama_anak = nama_anak;
+        this.nama_kebaktian = nama_kebaktian;
+        this.tanggal_kebaktian = tanggal_kebaktian;
         this.deskripsi = deskripsi;
     }
 
-    public int getIdKehadiran() {
-        return idKehadiran;
+    public int getId_kehadiran() {
+        return id_kehadiran;
     }
 
-    public void setIdKehadiran(int idKehadiran) {
-        this.idKehadiran = idKehadiran;
+    public void setId_kehadiran(int id_kehadiran) {
+        this.id_kehadiran = id_kehadiran;
     }
 
-    public int getStatusKehadiran() {
-        return statusKehadiran;
+    public int getStatus_kehadiran() {
+        return status_kehadiran;
     }
     public boolean getStatus(){
-        return statusKehadiran == 1;
+        return status_kehadiran == 1;
     }
 
-    public void setStatusKehadiran(int statusKehadiran) {
-        this.statusKehadiran = statusKehadiran;
+    public void setStatus_kehadiran(int status_kehadiran) {
+        this.status_kehadiran = status_kehadiran;
     }
 
-    public int getIdKebaktian() {
-        return idKebaktian;
+    public int getId_kebaktian() {
+        return id_kebaktian;
     }
 
-    public void setIdKebaktian(int idKebaktian) {
-        this.idKebaktian = idKebaktian;
+    public void setId_kebaktian(int id_kebaktian) {
+        this.id_kebaktian = id_kebaktian;
     }
 
-    public int getIdAnak() {
-        return idAnak;
+    public int getId_anak() {
+        return id_anak;
     }
 
-    public void setIdAnak(int idAnak) {
-        this.idAnak = idAnak;
+    public void setId_anak(int id_anak) {
+        this.id_anak = id_anak;
     }
 
-    public String getNamaAnak() {
-        return namaAnak;
+    public String getNama_anak() {
+        return nama_anak;
     }
 
-    public void setNamaAnak(String namaAnak) {
-        this.namaAnak = namaAnak;
+    public void setNama_anak(String nama_anak) {
+        this.nama_anak = nama_anak;
     }
 
-    public String getNamaKebaktian() {
-        return namaKebaktian;
+    public String getNama_kebaktian() {
+        return nama_kebaktian;
     }
 
-    public void setNamaKebaktian(String namaKebaktian) {
-        this.namaKebaktian = namaKebaktian;
+    public void setNama_kebaktian(String nama_kebaktian) {
+        this.nama_kebaktian = nama_kebaktian;
     }
 
-    public Date getTanggalKebaktian() {
-        return tanggalKebaktian;
+    public Date getTanggal_kebaktian() {
+        return tanggal_kebaktian;
     }
 
-    public void setTanggalKebaktian(Date tanggalKebaktian) {
-        this.tanggalKebaktian = tanggalKebaktian;
+    public void setTanggal_kebaktian(Date tanggal_kebaktian) {
+        this.tanggal_kebaktian = tanggal_kebaktian;
     }
 
     public String getDeskripsi() {
