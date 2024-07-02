@@ -85,7 +85,7 @@ public class KehadiranDialogController {
             String query = """
                 UPDATE kehadiran
                 SET id_anak = ?, id_kebaktian = ?, status = ?
-                WHERE kehadiran_id = ?
+                WHERE id_kehadiran = ?
                 """;
             st = con.prepareStatement(query);
             st.setInt(1, Integer.parseInt(field_id_anak.getValue().split(" ")[0]));
